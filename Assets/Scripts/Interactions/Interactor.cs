@@ -19,6 +19,7 @@ public class Interactor : MonoBehaviour
     [SerializeField] private LayerMask _obstacleLayer;
 
     private Transform _transform;
+    private Outline _otlineLastSeen;
 
     private void Awake()
     {
@@ -28,9 +29,7 @@ public class Interactor : MonoBehaviour
 
     void Update()
     {
-        
         HandleInteraction();
-       
     }
 
     private void HandleInteraction() 
@@ -42,7 +41,7 @@ public class Interactor : MonoBehaviour
             
             if (hit.transform.TryGetComponent(out IInteractable interactableObject))
             {
-                if (image != null) image.gameObject.SetActive(true);
+                HandleInteractionInfo(hit, true);
 
                 if (playerInputHandler.InteractTriggered)
                 {
@@ -52,8 +51,45 @@ public class Interactor : MonoBehaviour
             }
         }
         else 
-        { 
-             if (image != null) image.gameObject.SetActive(false);
+        {
+            HandleInteractionInfo(hit, false);
         }
+    }
+
+    private void HandleInteractionInfo(RaycastHit hit, bool visible) 
+    {
+        if (visible) 
+        {
+            //UI
+            if (image != null) image.gameObject.SetActive(true);
+
+            //set outline
+            Outline _aux = _otlineLastSeen;
+            _otlineLastSeen = hit.transform.GetComponent<Outline>() ??
+                                hit.transform.GetComponentInParent<Outline>() ??
+                                hit.transform.GetComponentInChildren<Outline>();
+            if (_otlineLastSeen)
+            {
+                _otlineLastSeen.enabled = true;
+                if (_aux && _aux.transform.root != _otlineLastSeen.transform.root)
+                {
+                    _aux.enabled = false;
+                }
+            }
+        }
+        else 
+        {
+            //UI
+            if (image != null) image.gameObject.SetActive(false);
+
+            //set outline
+            if (_otlineLastSeen)
+            {
+                _otlineLastSeen.enabled = false;
+                _otlineLastSeen = null;
+            }
+        }
+
+        
     }
 }
