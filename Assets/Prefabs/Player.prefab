@@ -49,6 +49,7 @@ MonoBehaviour:
   movement: Movement
   rotation: Rotation
   sprint: Sprint
+  interact: Interact
 --- !u!1 &1948590796148203252
 GameObject:
   m_ObjectHideFlags: 0
@@ -60,6 +61,7 @@ GameObject:
   - component: {fileID: 8801920807905284414}
   - component: {fileID: 6187895261322395717}
   - component: {fileID: 4736196709564627320}
+  - component: {fileID: 5526983818417189874}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -129,6 +131,26 @@ MonoBehaviour:
   sprintMultiplier: 2
   mouseSensitivity: 0.1
   upDownLookRange: 80
+--- !u!114 &5526983818417189874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948590796148203252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd1df106172fba7438b2be5a54a59960, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactor
+  playerInputHandler: {fileID: 1580756165105969009}
+  _interactionRadius: 1.5
+  _interactableLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  _obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 129
 --- !u!1 &3452794886703103651
 GameObject:
   m_ObjectHideFlags: 0
