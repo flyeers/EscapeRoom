@@ -20,6 +20,7 @@ public class Interactor : MonoBehaviour
 
     private Transform _transform;
     private Outline _otlineLastSeen;
+    private RaycastHit _lastHit;
 
     private void Awake()
     {
@@ -41,7 +42,8 @@ public class Interactor : MonoBehaviour
             
             if (hit.transform.TryGetComponent(out IInteractable interactableObject))
             {
-                HandleInteractionInfo(hit, true);
+                _lastHit = hit;
+                HandleInteractionInfo(true);
 
                 if (playerInputHandler.InteractTriggered)
                 {
@@ -52,11 +54,12 @@ public class Interactor : MonoBehaviour
         }
         else 
         {
-            HandleInteractionInfo(hit, false);
+            _lastHit = hit;
+            HandleInteractionInfo(false);
         }
     }
 
-    private void HandleInteractionInfo(RaycastHit hit, bool visible) 
+    public void HandleInteractionInfo(bool visible) 
     {
         if (visible) 
         {
@@ -65,9 +68,9 @@ public class Interactor : MonoBehaviour
 
             //set outline
             Outline _aux = _otlineLastSeen;
-            _otlineLastSeen = hit.transform.GetComponent<Outline>() ??
-                                hit.transform.GetComponentInParent<Outline>() ??
-                                hit.transform.GetComponentInChildren<Outline>();
+            _otlineLastSeen = _lastHit.transform.GetComponent<Outline>() ??
+                                _lastHit.transform.GetComponentInParent<Outline>() ??
+                                _lastHit.transform.GetComponentInChildren<Outline>();
             if (_otlineLastSeen)
             {
                 _otlineLastSeen.enabled = true;

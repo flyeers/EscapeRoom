@@ -3,8 +3,8 @@ using UnityEngine;
 public class FirstPersonController : MonoBehaviour
 {
     [SerializeField] private CharacterController characterController;
-    [SerializeField] private Camera mainCamera;
-    [SerializeField] private PlayerInputHandler playerInputHandler;
+    [SerializeField] public Camera mainCamera;
+    [SerializeField] public PlayerInputHandler playerInputHandler;
 
     [Header("Movement")]
     [SerializeField] private float walkSpeed = 3.0f;

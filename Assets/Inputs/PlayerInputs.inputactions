@@ -133,6 +133,54 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "CloseUp",
+            "id": "7e7e4599-ac6e-4518-8a8b-3685dab15c17",
+            "actions": [
+                {
+                    "name": "Back",
+                    "type": "Button",
+                    "id": "cc853fee-19ec-48ea-b0c0-4531817eb698",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "7cf697bd-73a4-4ff4-9c31-56cc22b4e3f7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "b3216cc7-67f7-4a71-a39d-e9415e81761c",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Back",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bfc91a85-f773-41ab-83be-30098eadc871",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
