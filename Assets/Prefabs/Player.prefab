@@ -158,6 +158,7 @@ MonoBehaviour:
   _obstacleLayer:
     serializedVersion: 2
     m_Bits: 129
+  cooldown: 0.5
 --- !u!114 &6327559171168229599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,6 +181,7 @@ MonoBehaviour:
   interactableLayer:
     serializedVersion: 2
     m_Bits: 256
+  cooldown: 0.5
 --- !u!114 &6043529825811447138
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,5 +1,7 @@
 using Assets.Scripts.Interactions;
 using Assets.Scripts.Interactions.Clickable;
+using System.Collections;
+using UnityEditor.Timeline.Actions;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,7 +21,9 @@ public class CloseUpController : MonoBehaviour
     [Header("Interaction parameters")]
     [SerializeField] private float interactDistance = 5f;
     [SerializeField] private LayerMask interactableLayer;
+    [SerializeField] private float cooldown = 0.5f;
 
+    private bool _canInteract = true;
     private Outline _otlineLastSeen;
     private RaycastHit _lastHit;
 
@@ -47,6 +51,7 @@ public class CloseUpController : MonoBehaviour
         if (playerInputHandler.BackTriggered) //Exit CloseUp mode
         {
             controllerManager.ChangeControllers(true, mainCamera);
+            return;
         }
 
 
@@ -63,9 +68,10 @@ public class CloseUpController : MonoBehaviour
                 _lastHit = hit;
                 HandleInteractionInfo(true);
 
-                if (playerInputHandler.InteractCloseTriggered)
+                if (_canInteract && playerInputHandler.InteractCloseTriggered)
                 {
                     interactable.Interact(gameObject);
+                    StartCoroutine(Cooldown());
                 }
             }
         }
@@ -113,6 +119,13 @@ public class CloseUpController : MonoBehaviour
         }
 
 
+    }
+
+    IEnumerator Cooldown()
+    {
+        _canInteract = false;
+        yield return new WaitForSeconds(cooldown);
+        _canInteract = true;
     }
 
 

@@ -1,4 +1,5 @@
 using Assets.Scripts.Interactions;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -17,7 +18,9 @@ public class Interactor : MonoBehaviour
     [SerializeField] private float _interactionRadius = 1.5f;
     [SerializeField] private LayerMask _interactableLayer;
     [SerializeField] private LayerMask _obstacleLayer;
+    [SerializeField] private float cooldown = 0.5f;
 
+    private bool _canInteract = true;
     private Transform _transform;
     private Outline _otlineLastSeen;
     private RaycastHit _lastHit;
@@ -49,10 +52,11 @@ public class Interactor : MonoBehaviour
                 _lastHit = hit;
                 HandleInteractionInfo(true);
 
-                if (playerInputHandler.InteractTriggered)
+                if (_canInteract && playerInputHandler.InteractTriggered)
                 {
                     interactableObject.Interact(gameObject);
-                    Debug.Log("interactableObject reached");
+                    StartCoroutine(Cooldown());
+                    //Debug.Log("interactableObject reached");
                 }
             }
         }
@@ -96,7 +100,13 @@ public class Interactor : MonoBehaviour
                 _otlineLastSeen = null;
             }
         }
-
-        
     }
+
+    IEnumerator Cooldown()
+    {
+        _canInteract = false;
+        yield return new WaitForSeconds(cooldown);
+        _canInteract = true;
+    }
+
 }
