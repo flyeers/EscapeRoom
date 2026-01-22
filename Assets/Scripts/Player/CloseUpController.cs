@@ -90,7 +90,6 @@ public class CloseUpController : MonoBehaviour
             //UI
             Cursor.SetCursor(imageCursor, Vector2.zero, CursorMode.Auto);
 
-
             //set outline
             Outline _aux = _otlineLastSeen;
             _otlineLastSeen = _lastHit.transform.GetComponent<Outline>() ??
