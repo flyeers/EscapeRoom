@@ -50,7 +50,7 @@ public class PlayerInputHandler : MonoBehaviour
         //CloseUp
         InputActionMap mapReferenceCloseUp = playerControls.FindActionMap(actionMapNameColoseUp);
         backAction = mapReferenceCloseUp.FindAction(back);
-        interactCloseAction = mapReferenceCloseUp.FindAction(interact);
+        interactCloseAction = mapReferenceCloseUp.FindAction(interactClose);
 
         SubscribeActionValuesToInputEvents();
     }

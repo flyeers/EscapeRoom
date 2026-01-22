@@ -27,10 +27,14 @@ public class Interactor : MonoBehaviour
         _transform = cameraTransform;
     }
 
-
     void Update()
     {
         HandleInteraction();
+    }
+
+    private void OnDisable()
+    {
+        HandleInteractionInfo(false);
     }
 
     private void HandleInteraction() 
@@ -38,7 +42,7 @@ public class Interactor : MonoBehaviour
 
         if (Physics.Raycast(_transform.position, _transform.forward, out var hit, _interactionRadius, _interactableLayer))
         {
-            Debug.DrawRay(_transform.position, _transform.forward, Color.red); 
+            //Debug.DrawRay(_transform.position, _transform.forward, Color.red); 
             
             if (hit.transform.TryGetComponent(out IInteractable interactableObject))
             {

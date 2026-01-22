@@ -29,6 +29,8 @@ public class ControllerManager : MonoBehaviour
 
         playerInputHandler.SetCloseUpMap(!isFirstPersonController);
         closeUpController.enabled = !isFirstPersonController;
+
+        if (!isFirstPersonController) closeUpController.SetCurrentCamera(currentCamera);
     } 
 
     public void ChangeControllers(bool _firstPersonController, Camera newCamera) 

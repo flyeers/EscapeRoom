@@ -9,12 +9,6 @@ public class CloseUpInteract : MonoBehaviour, IInteractable
     {
         if (camera) 
         {
-            Interactor interact = interactor.GetComponent<Interactor>();
-            if (interact)
-            {
-                interact.HandleInteractionInfo(false);
-            }
-
             ControllerManager manager = interactor.GetComponent<ControllerManager>();
             if (manager) 
             {
