@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class Padlock : MonoBehaviour
 {
+    [Header("Padlock")]
     [SerializeField] private int combination;
     [Range(0, 9)]
     [SerializeField] private int[] numbers = {0, 0, 0};
 
-   /* void OnValidate()
-    {
-        if (NumberOfEnemies > 5)
-            NumberOfEnemies = 5; // Reset to 5 when it is tried to be set higher than 5
-    }*/
+    [Header("On unlocked")]
+    [SerializeField] private Action actionOnUnlocked;
+
+    private bool locked = true;
 
     private bool CheckCombination() 
     {
@@ -29,9 +29,11 @@ public class Padlock : MonoBehaviour
         else 
         {
             numbers[position] = newNumber;
-            if (CheckCombination())
+            if (locked && CheckCombination())
             {
-                Debug.Log("COMBINACIÓN ACERTADA :) ");
+                //TODO - change when stablished
+                locked = false;
+                if(actionOnUnlocked != null) actionOnUnlocked.ExecuteAction();
             }
         }
     }
