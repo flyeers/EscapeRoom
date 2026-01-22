@@ -31,7 +31,6 @@ public class Padlock : MonoBehaviour
             numbers[position] = newNumber;
             if (locked && CheckCombination())
             {
-                //TODO - change when stablished
                 locked = false;
                 if(actionOnUnlocked != null) actionOnUnlocked.ExecuteAction();
             }

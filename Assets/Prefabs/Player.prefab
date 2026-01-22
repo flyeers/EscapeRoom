@@ -181,7 +181,7 @@ MonoBehaviour:
   interactableLayer:
     serializedVersion: 2
     m_Bits: 256
-  cooldown: 0.5
+  cooldown: 0.25
 --- !u!114 &6043529825811447138
 MonoBehaviour:
   m_ObjectHideFlags: 0
