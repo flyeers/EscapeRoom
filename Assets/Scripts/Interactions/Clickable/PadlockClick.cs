@@ -6,6 +6,8 @@ public class PadlockClick : MonoBehaviour, IClickable
 {
     [SerializeField] private Padlock padlock;
     [SerializeField] private int positionInPadlock;
+    [Range(0, 9)]
+    [SerializeField] private int maxPadlockNumber = 9;
 
     [SerializeField] private Vector3 rotationToAdd = new Vector3(0f, 36f, 0f);//y
 
@@ -20,11 +22,9 @@ public class PadlockClick : MonoBehaviour, IClickable
 
     public void Interact(GameObject interactor)
     {
-        //SUMAMOS 1 de momento y asumimos q va del 0 al 9 
-
         transform.Rotate(rotationToAdd);
 
-        number = number + 1 > 9 ? 0 : number + 1;
+        number = number + 1 > maxPadlockNumber ? 0 : number + 1;
         padlock.SetNumber(positionInPadlock, number);
     }
 }
