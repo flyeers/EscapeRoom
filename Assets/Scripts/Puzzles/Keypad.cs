@@ -1,12 +1,23 @@
 using System;
+using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Keypad : MonoBehaviour
 {
-    [Header("Padlock")]
+    [Header("Keypad")]
     [SerializeField] private string combination;
+
+    [Header("Keypad info")]
     [SerializeField] private TextMeshProUGUI text;
+    [SerializeField] private Image image;
+    [SerializeField] private Color initialColor;
+    [SerializeField] private Color errorColor;
+    [SerializeField] private Color unlockedColor;
+    [SerializeField] private float errorInfoTime = 1f;
+
 
     [Header("On unlocked")]
     [SerializeField] private Action actionOnUnlocked;
@@ -14,6 +25,7 @@ public class Keypad : MonoBehaviour
     private string currentCombination = "";
     private string emptyCombination = "";
     private bool locked = true;
+    private bool blocked = false;
 
     private void Start()
     {
@@ -22,7 +34,7 @@ public class Keypad : MonoBehaviour
             emptyCombination += "*";
         }
         text.text = emptyCombination;
-
+        image.color = initialColor;
     }
 
     private bool CheckCombination()
@@ -33,27 +45,44 @@ public class Keypad : MonoBehaviour
 
     public void KeyEntered(string key) 
     {
-        currentCombination += key;
-        text.text = currentCombination;
-        Debug.Log(currentCombination);
-
-
-        if (currentCombination.Length == combination.Length)
+        if (!blocked) //if shoing info no input accepted
         {
-            if (locked && CheckCombination()) 
-            {
-                locked = false;
-                Debug.Log("Keypad Unlocked");
+            currentCombination += key;
+            text.text = currentCombination;
+            Debug.Log(currentCombination);
 
-                if (actionOnUnlocked) actionOnUnlocked.ExecuteAction();
-            }
-            else 
+
+            if (currentCombination.Length == combination.Length)
             {
-                currentCombination = "";
-                text.text = emptyCombination;
+                if (locked && CheckCombination())
+                {
+                    blocked = true;
+                    image.color = unlockedColor;
+
+                    locked = false;
+                    Debug.Log("Keypad Unlocked");
+
+                    if (actionOnUnlocked) actionOnUnlocked.ExecuteAction();
+                }
+                else
+                {
+                    StartCoroutine(ErrorInfo());
+                }
             }
         }
-        
+    }
+
+    IEnumerator ErrorInfo()
+    {
+        blocked = true;
+        image.color = errorColor;
+
+        yield return new WaitForSeconds(errorInfoTime);
+
+        image.color = initialColor;
+        blocked = false;
+        currentCombination = "";
+        text.text = emptyCombination;
     }
 
 }
