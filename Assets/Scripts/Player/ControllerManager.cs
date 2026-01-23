@@ -1,4 +1,5 @@
 using System;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,9 +9,9 @@ public class ControllerManager : MonoBehaviour
     [SerializeField] private FirstPersonController firstPersoncontroller;
     [SerializeField] private Interactor interactor;
     [SerializeField] private CloseUpController closeUpController;
-    [SerializeField] private Camera mainCamera;
+    [SerializeField] private CinemachineCamera mainCamera;
 
-    private Camera currentCamera;
+    private CinemachineCamera currentCamera;
 
 
     [SerializeField] private bool isFirstPersonController = true;
@@ -29,11 +30,9 @@ public class ControllerManager : MonoBehaviour
 
         playerInputHandler.SetCloseUpMap(!isFirstPersonController);
         closeUpController.enabled = !isFirstPersonController;
-
-        if (!isFirstPersonController) closeUpController.SetCurrentCamera(currentCamera);
     } 
 
-    public void ChangeControllers(bool _firstPersonController, Camera newCamera) 
+    public void ChangeControllers(bool _firstPersonController, CinemachineCamera newCamera) 
     {
         isFirstPersonController = _firstPersonController;
 

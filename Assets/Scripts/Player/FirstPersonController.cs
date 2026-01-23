@@ -1,9 +1,10 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class FirstPersonController : MonoBehaviour
 {
     [SerializeField] private CharacterController characterController;
-    [SerializeField] public Camera mainCamera;
+    [SerializeField] public CinemachineCamera mainCamera;
     [SerializeField] public PlayerInputHandler playerInputHandler;
 
     [Header("Movement")]

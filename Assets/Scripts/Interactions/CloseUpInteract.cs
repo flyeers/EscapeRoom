@@ -1,9 +1,10 @@
 using Assets.Scripts.Interactions;
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class CloseUpInteract : MonoBehaviour, IInteractable
 {
-    [SerializeField] private Camera camera;
+    [SerializeField] private CinemachineCamera camera;
 
     public void Interact(GameObject interactor)
     {
@@ -16,5 +17,14 @@ public class CloseUpInteract : MonoBehaviour, IInteractable
             }
     
         }  
+    }
+
+    public void SetVirtualCamera(CinemachineCamera newCamera) 
+    { 
+        camera = newCamera;
+    }
+    public CinemachineCamera GetVirtualCamera()
+    {
+        return camera;
     }
 }

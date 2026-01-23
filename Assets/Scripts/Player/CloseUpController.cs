@@ -1,6 +1,7 @@
 using Assets.Scripts.Interactions;
 using Assets.Scripts.Interactions.Clickable;
 using System.Collections;
+using Unity.Cinemachine;
 using UnityEditor.Timeline.Actions;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,10 +11,10 @@ public class CloseUpController : MonoBehaviour
     [SerializeField] private CharacterController characterController;
     [SerializeField] private FirstPersonController firstPersonController;
     [SerializeField] private Camera mainCamera;
+    [SerializeField] private CinemachineCamera mainCameraVirtual;
     [SerializeField] private PlayerInputHandler playerInputHandler;
     [SerializeField] private ControllerManager controllerManager;
 
-    private Camera currentCamera;
 
     [Header("Interaction info")]
     [SerializeField] private Texture2D imageCursor;
@@ -50,15 +51,14 @@ public class CloseUpController : MonoBehaviour
     {
         if (playerInputHandler.BackTriggered) //Exit CloseUp mode
         {
-            controllerManager.ChangeControllers(true, mainCamera);
+            controllerManager.ChangeControllers(true, mainCameraVirtual);
             return;
         }
 
 
         // Object to interact
-
         Vector2 mousePosition = Mouse.current.position.ReadValue();
-        Ray ray = currentCamera.ScreenPointToRay(mousePosition);
+        Ray ray = mainCamera.ScreenPointToRay(mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit, interactDistance, interactableLayer))
         {
             //Debug.DrawLine(ray.origin, hit.point, Color.green);
@@ -125,12 +125,6 @@ public class CloseUpController : MonoBehaviour
         _canInteract = false;
         yield return new WaitForSeconds(cooldown);
         _canInteract = true;
-    }
-
-
-    public void SetCurrentCamera(Camera camera) 
-    {
-        currentCamera = camera;
     }
 
 }

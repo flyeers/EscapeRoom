@@ -1,23 +1,26 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class MoveAction : Action
 {
+    [Header("Object to move")]
     [SerializeField] private GameObject objectToMove;
     [SerializeField] private Vector3 movementRange = new Vector3();
 
-    [SerializeField] private Camera camera;
-    [SerializeField] private Vector3 addCameraPosition = new Vector3();
-    [SerializeField] private Vector3 addCameraRotation = new Vector3();
+    [Header("Camera")]
+    [SerializeField] private CinemachineCamera newCamera;
+    [SerializeField] private CloseUpInteract closeUpInteract;
 
     public override void ExecuteAction()
     {
         if (objectToMove) objectToMove.transform.position += movementRange;
-
-        if (camera) 
+        if (closeUpInteract && newCamera) 
         {
-            camera.transform.position += addCameraPosition;
-            camera.transform.Rotate(addCameraRotation);
+            closeUpInteract.GetVirtualCamera().enabled = false;
+            newCamera.enabled = true;
+            closeUpInteract.SetVirtualCamera(newCamera);
         }
+        
     }
 
 }
