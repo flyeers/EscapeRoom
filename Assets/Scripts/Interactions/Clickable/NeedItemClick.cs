@@ -17,8 +17,14 @@ public class NeedItemClick : MonoBehaviour, IClickable
             {
                 if(itemSo.consumable) inventory.RemoveItem(itemSo); //if consumable remove from inventory
                 if (action) action.ExecuteAction();
+
+                //TODO ¿?¿?Eliminar componente ¿??  - no se puede repetir la accion 
+                Debug.Log("OPEEEN");
             }
-            Debug.Log("NO KEYY");
+            else 
+            {
+                Debug.Log("NO KEYY");
+            }
         }
     }
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba9f8b899b3fb2a4e9db33d66775eda4, type: 3}
   m_Name: Key_1
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  Id: 0
   Name: Key
   Description: A key wow
+  consumable: 1
   ItemSprite: {fileID: 0}
