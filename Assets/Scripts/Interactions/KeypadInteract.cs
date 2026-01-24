@@ -1,7 +1,7 @@
-using Assets.Scripts.Interactions.Clickable;
+using Assets.Scripts.Interactions;
 using UnityEngine;
 
-public class KeypadClick : MonoBehaviour, IClickable
+public class KeypadInteract : MonoBehaviour, IInteractable
 {
     [SerializeField] private Keypad keypad;
     [SerializeField] private string key;

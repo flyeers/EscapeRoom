@@ -1,8 +1,8 @@
-using Assets.Scripts.Interactions.Clickable;
+using Assets.Scripts.Interactions;
 using NUnit.Framework.Interfaces;
 using UnityEngine;
 
-public class NeedItemClick : MonoBehaviour, IClickable
+public class NeedItemInteract: MonoBehaviour, IInteractable
 {
     [SerializeField] private ItemSO itemSo;
     [SerializeField] private Action action;

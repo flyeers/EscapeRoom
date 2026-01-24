@@ -1,8 +1,8 @@
-using Assets.Scripts.Interactions.Clickable;
+using Assets.Scripts.Interactions;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class DestroyClick : MonoBehaviour, IClickable
+public class DestroyInteract : MonoBehaviour, IInteractable
 {
     public void Interact(GameObject interactor)
     {

@@ -1,8 +1,8 @@
-using Assets.Scripts.Interactions.Clickable;
+using Assets.Scripts.Interactions;
 using UnityEngine;
 using static UnityEngine.Rendering.DebugUI.Table;
 
-public class PadlockClick : MonoBehaviour, IClickable
+public class PadlockInteract : MonoBehaviour, IInteractable
 {
     [SerializeField] private Padlock padlock;
     [SerializeField] private int positionInPadlock;

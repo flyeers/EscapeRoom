@@ -1,5 +1,4 @@
 using Assets.Scripts.Interactions;
-using Assets.Scripts.Interactions.Clickable;
 using System.Collections;
 using Unity.Cinemachine;
 using UnityEditor.Timeline.Actions;
@@ -63,7 +62,7 @@ public class CloseUpController : MonoBehaviour
         {
             //Debug.DrawLine(ray.origin, hit.point, Color.green);
 
-            if (hit.collider.TryGetComponent<IClickable>(out IClickable interactable))
+            if (hit.collider.TryGetComponent<IInteractable>(out IInteractable interactable))
             {
                 _lastHit = hit;
                 HandleInteractionInfo(true);
