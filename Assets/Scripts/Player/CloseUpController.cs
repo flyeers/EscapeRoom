@@ -48,12 +48,14 @@ public class CloseUpController : MonoBehaviour
 
     private void HandleClick()
     {
-        if (playerInputHandler.BackTriggered) //Exit CloseUp mode
+        if (CheckMessageActive()) return;
+
+        //Exit CloseUp mode
+        if (playerInputHandler.BackTriggered) 
         {
             controllerManager.ChangeControllers(true, mainCameraVirtual);
             return;
         }
-
 
         // Object to interact
         Vector2 mousePosition = Mouse.current.position.ReadValue();
@@ -115,8 +117,22 @@ public class CloseUpController : MonoBehaviour
                  _otlineLastSeen = null;
              }
         }
+    }
 
-
+    private bool CheckMessageActive()
+    {
+        GameObject messageUI = GameObject.FindGameObjectWithTag("MessageUI");
+        if (messageUI != null)
+        {
+            if (_canInteract && playerInputHandler.InteractCloseTriggered)
+            {
+                //Close menu if oppen
+                Destroy(messageUI);
+                StartCoroutine(Cooldown());
+            }
+            return true;
+        }
+        return false;
     }
 
     IEnumerator Cooldown()

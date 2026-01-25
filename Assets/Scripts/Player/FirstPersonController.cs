@@ -17,6 +17,7 @@ public class FirstPersonController : MonoBehaviour
 
     private Vector3 currentMovement;
     private float verticalRotation;
+    private bool canMove = true;
     private float CurrentSpeed => walkSpeed * (playerInputHandler.SprintTriggered ? sprintMultiplier : 1);
 
 
@@ -31,8 +32,11 @@ public class FirstPersonController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        HandleMovement();
-        HandleRotation();
+        if (canMove) 
+        { 
+            HandleMovement();
+            HandleRotation();
+        }
     }
 
 
@@ -76,6 +80,11 @@ public class FirstPersonController : MonoBehaviour
 
         ApplyHorizontalRotation(mouseXRotation);
         ApplyVerticalRotation(mouseYRotation);
+    }
+
+    public void SetCanMove(bool canMove) 
+    {
+        this.canMove = canMove;
     }
 
 }

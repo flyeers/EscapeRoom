@@ -226,6 +226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactor
   playerInputHandler: {fileID: 1580756165105969009}
+  firstPersonController: {fileID: 4736196709564627320}
   cameraTransform: {fileID: 1406475970893915083}
   image: {fileID: 0}
   _interactionRadius: 3
@@ -235,7 +236,7 @@ MonoBehaviour:
   _obstacleLayer:
     serializedVersion: 2
     m_Bits: 129
-  cooldown: 0.5
+  cooldown: 0.25
 --- !u!114 &6327559171168229599
 MonoBehaviour:
   m_ObjectHideFlags: 0

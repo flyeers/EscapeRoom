@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class Interactor : MonoBehaviour
 {
     [SerializeField] private PlayerInputHandler playerInputHandler;
+    [SerializeField] private FirstPersonController firstPersonController;
     [SerializeField] private Transform cameraTransform;
 
     [Header("Interaction info")]
@@ -43,7 +44,10 @@ public class Interactor : MonoBehaviour
     private void HandleInteraction() 
     {
 
-        if (Physics.Raycast(_transform.position, _transform.forward, out var hit, _interactionRadius, _interactableLayer))
+        if (CheckMessageActive()) return;
+
+
+        if (Physics.Raycast(_transform.position, _transform.forward, out var hit, _interactionRadius, _interactableLayer | _obstacleLayer))
         {
             //Debug.DrawRay(_transform.position, _transform.forward, Color.red); 
             
@@ -100,6 +104,27 @@ public class Interactor : MonoBehaviour
                 _otlineLastSeen = null;
             }
         }
+    }
+
+    private bool CheckMessageActive() 
+    {
+        GameObject messageUI = GameObject.FindGameObjectWithTag("MessageUI");
+        if (messageUI != null)
+        {
+            //Block movement
+            firstPersonController.SetCanMove(false);
+
+            if (_canInteract && playerInputHandler.InteractTriggered)
+            {
+                //Close menu if oppen
+                Destroy(messageUI);
+                StartCoroutine(Cooldown());
+                //Unblock movement
+                firstPersonController.SetCanMove(true);
+            }
+            return true;
+        }
+        return false;
     }
 
     IEnumerator Cooldown()
