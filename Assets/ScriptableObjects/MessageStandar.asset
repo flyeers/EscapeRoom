@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee54b8b92d9632942947fc4f7bffb32f, type: 3}
+  m_Name: MessageStandar
+  m_EditorClassIdentifier: Assembly-CSharp::ShowMessageSO
+  messageUIPrefab: {fileID: 6303870084342460274, guid: b0b63179b64e1f5438a01aa05bb3d771, type: 3}
+  _keboardExitImg: {fileID: 21300000, guid: 9b2318100aca965428b4b5238a5c0744, type: 3}
+  _gamepadExitImg: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}

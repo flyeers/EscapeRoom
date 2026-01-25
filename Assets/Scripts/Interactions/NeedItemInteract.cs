@@ -8,6 +8,12 @@ public class NeedItemInteract: MonoBehaviour, IInteractable
     [SerializeField] private Action action;
     [SerializeField] private bool deactivateAfterAction = false;
 
+    [Header("Alternative message")]
+    [SerializeField] private bool showAlternativeMessage = true;
+    [SerializeField] private ShowMessageSO showMessageSO;
+    public string messageText = "";
+
+
     public void Interact(GameObject interactor)
     {
         InventoryManager inventory = interactor.gameObject.GetComponentInChildren<InventoryManager>();
@@ -26,6 +32,7 @@ public class NeedItemInteract: MonoBehaviour, IInteractable
             else 
             {
                 Debug.Log("NO KEYY");
+                showMessageSO.ShowMessage(messageText);
             }
         }
     }

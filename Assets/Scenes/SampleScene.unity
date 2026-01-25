@@ -227,7 +227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d30f5377bf251e14ba3fcbc74b4545aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MessageInteract
-  messageUIPrefab: {fileID: 6303870084342460274, guid: b0b63179b64e1f5438a01aa05bb3d771, type: 3}
+  showMessageSO: {fileID: 11400000, guid: 5fe7a399f1d44b2408a3facc2e1c2e8d, type: 2}
   messageText: Testing clickable message
 --- !u!114 &80146594
 MonoBehaviour:
@@ -1026,7 +1026,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SortPieceInteract
   sortPuzzle: {fileID: 1904064312}
   pieceId: 3
-  movementOnSelected: {x: 0, y: 0.1, z: 0}
 --- !u!114 &296968314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1376,7 +1375,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SortPieceInteract
   sortPuzzle: {fileID: 1904064312}
   pieceId: 1
-  movementOnSelected: {x: 0, y: 0.1, z: 0}
 --- !u!114 &332381379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2739,7 +2737,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SortPieceInteract
   sortPuzzle: {fileID: 1904064312}
   pieceId: 2
-  movementOnSelected: {x: 0, y: 0.1, z: 0}
 --- !u!114 &914574057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3349,7 +3346,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SortPieceInteract
   sortPuzzle: {fileID: 1904064312}
   pieceId: 4
-  movementOnSelected: {x: 0, y: 0.1, z: 0}
 --- !u!65 &1631384381
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3687,7 +3683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d30f5377bf251e14ba3fcbc74b4545aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MessageInteract
-  messageUIPrefab: {fileID: 6303870084342460274, guid: b0b63179b64e1f5438a01aa05bb3d771, type: 3}
+  showMessageSO: {fileID: 11400000, guid: 5fe7a399f1d44b2408a3facc2e1c2e8d, type: 2}
   messageText: Testing interactable message
 --- !u!1 &1855415018
 GameObject:
@@ -4055,6 +4051,7 @@ MonoBehaviour:
   piecesAimOrderIds: 04000000030000000200000001000000
   equalIds:
   - values: 0300000004000000
+  movementOnSelected: {x: 0, y: 0.1, z: 0}
 --- !u!1 &2029424350
 GameObject:
   m_ObjectHideFlags: 0
@@ -4571,18 +4568,6 @@ PrefabInstance:
       propertyPath: action
       value: 
       objectReference: {fileID: 1872170585}
-    - target: {fileID: 6139812694537191796, guid: 88cf149f9f9460f45ad8bfb194d654f8, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.27332455
-      objectReference: {fileID: 0}
-    - target: {fileID: 6139812694537191796, guid: 88cf149f9f9460f45ad8bfb194d654f8, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.9670335
-      objectReference: {fileID: 0}
-    - target: {fileID: 6139812694537191796, guid: 88cf149f9f9460f45ad8bfb194d654f8, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.17590477
-      objectReference: {fileID: 0}
     - target: {fileID: 6139812694537191796, guid: 88cf149f9f9460f45ad8bfb194d654f8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.3088568
