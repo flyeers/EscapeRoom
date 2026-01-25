@@ -18,7 +18,7 @@ public class Interactor : MonoBehaviour
     [Header("Interaction parameters")]
     [SerializeField] private float _interactionRadius = 1.5f;
     [SerializeField] private LayerMask _interactableLayer;
-    [SerializeField] private LayerMask _obstacleLayer;
+    //[SerializeField] private LayerMask _obstacleLayer;
     [SerializeField] private float cooldown = 0.5f;
 
     private bool _canInteract = true;
@@ -47,7 +47,7 @@ public class Interactor : MonoBehaviour
         if (CheckMessageActive()) return;
 
 
-        if (Physics.Raycast(_transform.position, _transform.forward, out var hit, _interactionRadius, _interactableLayer | _obstacleLayer))
+        if (Physics.Raycast(_transform.position, _transform.forward, out var hit, _interactionRadius, _interactableLayer))
         {
             //Debug.DrawRay(_transform.position, _transform.forward, Color.red); 
             

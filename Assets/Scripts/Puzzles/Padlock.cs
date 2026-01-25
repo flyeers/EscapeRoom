@@ -7,8 +7,6 @@ public class Padlock : Puzzle
     [Range(0, 9)]
     [SerializeField] private int[] numbers = {0, 0, 0};
 
-    private bool locked = true;
-
     private bool CheckCombination() 
     {
         int currentCombination = int.Parse(string.Concat(numbers));

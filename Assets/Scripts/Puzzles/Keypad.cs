@@ -21,7 +21,6 @@ public class Keypad : Puzzle
 
     private string currentCombination = "";
     private string emptyCombination = "";
-    private bool locked = true;
     private bool blocked = false;
 
     private void Start()
