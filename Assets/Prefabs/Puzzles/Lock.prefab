@@ -129,6 +129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NeedItemClick
   itemSo: {fileID: 11400000, guid: f0a65ee478d8225449c9914dfbb5d087, type: 2}
   action: {fileID: 0}
+  deactivateAfterAction: 1
 --- !u!114 &796247028572634520
 MonoBehaviour:
   m_ObjectHideFlags: 0

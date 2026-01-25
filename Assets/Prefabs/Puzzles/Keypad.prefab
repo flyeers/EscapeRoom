@@ -2469,9 +2469,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94b39742562585443b201691cb41a12b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Keypad
+  actionOnUnlocked: {fileID: 0}
   combination: 3456
   text: {fileID: 1324906773889829284}
-  actionOnUnlocked: {fileID: 0}
+  image: {fileID: 2220242192521470170}
+  initialColor: {r: 0.6901961, g: 0.6901961, b: 0.6901961, a: 1}
+  errorColor: {r: 1, g: 0, b: 0, a: 1}
+  unlockedColor: {r: 0, g: 1, b: 0.02102232, a: 1}
+  errorInfoTime: 1
 --- !u!1 &8201113597943471260
 GameObject:
   m_ObjectHideFlags: 0

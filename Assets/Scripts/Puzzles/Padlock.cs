@@ -1,14 +1,11 @@
 using UnityEngine;
 
-public class Padlock : MonoBehaviour
+public class Padlock : Puzzle
 {
     [Header("Padlock")]
     [SerializeField] private int combination;
     [Range(0, 9)]
     [SerializeField] private int[] numbers = {0, 0, 0};
-
-    [Header("On unlocked")]
-    [SerializeField] private Action actionOnUnlocked;
 
     private bool locked = true;
 

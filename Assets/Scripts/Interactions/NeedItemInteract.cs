@@ -6,7 +6,7 @@ public class NeedItemInteract: MonoBehaviour, IInteractable
 {
     [SerializeField] private ItemSO itemSo;
     [SerializeField] private Action action;
-
+    [SerializeField] private bool deactivateAfterAction = false;
 
     public void Interact(GameObject interactor)
     {
@@ -17,9 +17,11 @@ public class NeedItemInteract: MonoBehaviour, IInteractable
             {
                 if(itemSo.consumable) inventory.RemoveItem(itemSo); //if consumable remove from inventory
                 if (action) action.ExecuteAction();
-
-                //TODO ¿?¿?Eliminar componente ¿??  - no se puede repetir la accion 
                 Debug.Log("OPEEEN");
+
+                if (deactivateAfterAction) { 
+                    gameObject.layer = LayerMask.NameToLayer("Default");
+                }
             }
             else 
             {

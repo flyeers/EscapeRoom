@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Keypad : MonoBehaviour
+public class Keypad : Puzzle
 {
     [Header("Keypad")]
     [SerializeField] private string combination;
@@ -18,9 +18,6 @@ public class Keypad : MonoBehaviour
     [SerializeField] private Color unlockedColor;
     [SerializeField] private float errorInfoTime = 1f;
 
-
-    [Header("On unlocked")]
-    [SerializeField] private Action actionOnUnlocked;
 
     private string currentCombination = "";
     private string emptyCombination = "";
