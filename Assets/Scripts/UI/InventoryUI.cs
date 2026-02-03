@@ -26,8 +26,8 @@ public class InventoryUI : MonoBehaviour
         if (index >= itemsImages.Length) return; //not in UI  
         if (itemCount == -1) return; //allready empty 
 
-        itemsImages[itemCount].enabled = false;
-        itemsImages[itemCount].sprite = null;
+        itemsImages[index].enabled = false;
+        itemsImages[index].sprite = null;
 
         if (index != itemCount) //if not last item 
         {

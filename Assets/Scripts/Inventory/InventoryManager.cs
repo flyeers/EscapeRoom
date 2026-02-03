@@ -39,10 +39,10 @@ public class InventoryManager : MonoBehaviour
             item.RemoveFromStack();
             if (item.stackSize == 0)
             {
+                if (inventoryUI) inventoryUI.RemoveItemUI(inventory.IndexOf(item));
+
                 inventory.Remove(item);
                 itemInstances.Remove(itemSO);
-
-                if (inventoryUI) inventoryUI.RemoveItemUI(inventory.IndexOf(item));
             }
             else 
             {
