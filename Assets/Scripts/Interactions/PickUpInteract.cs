@@ -10,8 +10,10 @@ public class PickUpInteract : MonoBehaviour, IInteractable
         InventoryManager inventory = interactor.gameObject.GetComponentInChildren<InventoryManager>();
         if (inventory)
         {
-            inventory.AddItem(itemSO);
-            Destroy(gameObject);
+            if (inventory.AddItem(itemSO)) 
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
