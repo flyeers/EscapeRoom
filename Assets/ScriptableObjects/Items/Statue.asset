@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ba9f8b899b3fb2a4e9db33d66775eda4, type: 3}
-  m_Name: Key_black
+  m_Name: Statue
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  Name: Key black
-  Description: A key wow
+  Name: Small statue
+  Description: 
   consumable: 1
-  ItemSprite: {fileID: 21300000, guid: 259affd2b2f47d5428dfbcd239e38b5c, type: 3}
-  ItemPrefab: {fileID: 2960922385801191542, guid: 74a27b8300f37b841bd22078a368da47, type: 3}
+  ItemSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  ItemPrefab: {fileID: 1584727830295743575, guid: f3e84350e2d2e5e479cdbde02694c544, type: 3}

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NeedItemInteract: MonoBehaviour, IInteractable
 {
-    [SerializeField] private ItemSO itemSo;
+    [SerializeField] protected ItemSO itemSO;
     [SerializeField] private Action action;
     [SerializeField] private bool deactivateAfterAction = false;
 
@@ -19,21 +19,27 @@ public class NeedItemInteract: MonoBehaviour, IInteractable
         InventoryManager inventory = interactor.gameObject.GetComponentInChildren<InventoryManager>();
         if (inventory)
         {
-            if (inventory.CheckForItem(itemSo)) 
+            if (inventory.CheckForItem(itemSO)) 
             {
-                if(itemSo.consumable) inventory.RemoveItem(itemSo); //if consumable remove from inventory
-                if (action) action.ExecuteAction();
-                Debug.Log("OPEEEN");
-
-                if (deactivateAfterAction) { 
-                    gameObject.layer = LayerMask.NameToLayer("Default");
-                }
+                if(itemSO.consumable) inventory.RemoveItem(itemSO); //if consumable remove from inventory
+                UseItem();
             }
             else 
             {
-                Debug.Log("NO KEYY");
-                showMessageSO.ShowMessage(messageText);
+                Debug.Log("NO ITEM");
+                if(showMessageSO) showMessageSO.ShowMessage(messageText);
             }
+        }
+    }
+
+    protected virtual void UseItem() 
+    {
+        if (action) action.ExecuteAction();
+        Debug.Log("OPEEEN");
+
+        if (deactivateAfterAction)
+        {
+            gameObject.layer = LayerMask.NameToLayer("Default");
         }
     }
 }

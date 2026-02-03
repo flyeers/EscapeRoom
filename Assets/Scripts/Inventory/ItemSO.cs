@@ -7,4 +7,5 @@ public class ItemSO : ScriptableObject
     public string Description;
     public bool consumable;
     public Sprite ItemSprite;
+    public GameObject ItemPrefab;
 }

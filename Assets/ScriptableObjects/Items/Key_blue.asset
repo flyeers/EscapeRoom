@@ -16,3 +16,4 @@ MonoBehaviour:
   Description: A key wow
   consumable: 1
   ItemSprite: {fileID: 21300000, guid: 2ad8ebf57deca9b49b70cf49d95955c9, type: 3}
+  ItemPrefab: {fileID: 2960922385801191542, guid: 49cba9c899f056b488ad0c81665eff23, type: 3}
