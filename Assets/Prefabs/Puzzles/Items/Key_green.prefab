@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 1620109387694012238}
   - component: {fileID: 3804521954668517071}
   - component: {fileID: 5243820400152426511}
-  - component: {fileID: 3357424423955598282}
   - component: {fileID: 4678596718954882751}
+  - component: {fileID: 726318586538734071}
   m_Layer: 8
-  m_Name: Key_1
+  m_Name: Key_green
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -69,7 +69,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bb193f4134dde224aa2718f271e4f1f2, type: 2}
+  - {fileID: 2100000, guid: 51b681ed880fe6041b75caf92aacecaa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -116,19 +116,6 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: -0.25, z: 0}
---- !u!114 &3357424423955598282
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2960922385801191542}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5c391389ce292546bc25af261a5e993, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PickUpClick
-  itemSO: {fileID: 11400000, guid: f0a65ee478d8225449c9914dfbb5d087, type: 2}
 --- !u!114 &4678596718954882751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,3 +134,16 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &726318586538734071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2960922385801191542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c86c6dd903cf254995d8792659622cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PickUpInteract
+  itemSO: {fileID: 11400000, guid: 7cc2812fd5912834db1db21df4b9fccd, type: 2}
