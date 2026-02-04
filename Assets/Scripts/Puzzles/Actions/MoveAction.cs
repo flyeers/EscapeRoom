@@ -14,7 +14,7 @@ public class MoveAction : Action
     [SerializeField] private CinemachineCamera newCamera;
     [SerializeField] private CloseUpInteract closeUpInteract;
 
-    public override void ExecuteAction()
+    public override void ExecuteAction(GameObject obejct)
     {
         //objectToMove.transform.position += movementRange;
 

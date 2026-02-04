@@ -34,7 +34,7 @@ public class NeedItemInteract: MonoBehaviour, IInteractable
 
     protected virtual void UseItem() 
     {
-        if (action) action.ExecuteAction();
+        if (action) action.ExecuteAction(null);
         Debug.Log("OPEEEN");
 
         if (deactivateAfterAction)

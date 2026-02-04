@@ -6,26 +6,28 @@ public class PlaceItemIntercat : NeedItemInteract
 {
     [Header("Place item params")]
     [SerializeField] private Transform spawnPoint;
-    [SerializeField] private bool deactivatePickUp = true;
+    [SerializeField] private bool removePickUp = true;
 
     protected override void UseItem() 
     {
+        if (deactivateAfterAction)//deactivate place on game object
+        {
+            gameObject.layer = LayerMask.NameToLayer("Default");
+        }
+
         GameObject obj = Instantiate(itemSO.ItemPrefab, spawnPoint.position, spawnPoint.rotation);
             
-        if(deactivatePickUp) 
+        if(removePickUp) //remove pick up on placed obejct
         {
             if (obj.TryGetComponent<PickUpInteract>(out PickUpInteract pickUpInteract))
             {
-                pickUpInteract.enabled = false;
+                Destroy(pickUpInteract);
                 obj.layer = LayerMask.GetMask("Default");
             } 
         }
 
-
-        if (action) action.ExecuteActionObject(obj);
-        if (deactivateAfterAction)
-        {
-            gameObject.layer = LayerMask.NameToLayer("Default");
-        }
+       
+        if (action) action.ExecuteAction(obj);
+        
     }
 }

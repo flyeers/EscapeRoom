@@ -58,7 +58,7 @@ public class Keypad : Puzzle
                     locked = false;
                     Debug.Log("Keypad Unlocked");
 
-                    if (actionOnUnlocked) actionOnUnlocked.ExecuteAction();
+                    if (actionOnUnlocked) actionOnUnlocked.ExecuteAction(null);
                 }
                 else
                 {

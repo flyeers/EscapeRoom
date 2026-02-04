@@ -27,7 +27,8 @@ public class Padlock : Puzzle
             if (locked && CheckCombination())
             {
                 locked = false;
-                if(actionOnUnlocked != null) actionOnUnlocked.ExecuteAction();
+                Debug.Log("UNLOCKED");
+                if(actionOnUnlocked != null) actionOnUnlocked.ExecuteAction(null);
             }
         }
     }

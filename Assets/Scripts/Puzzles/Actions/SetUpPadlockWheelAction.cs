@@ -8,13 +8,17 @@ public class SetUpPadlockWheelAction : Action
     [SerializeField] private int maxPadlockNumber = 9;
     [SerializeField] private Vector3 rotationToAdd = new Vector3(0f, 36f, 0f);
 
-    [SerializeField] private LayerMask newlayerMask;
+    [SerializeField] private string newLayerName;
 
-    public override void ExecuteActionObject(GameObject obejct) 
+    public override void ExecuteAction(GameObject obejct) 
     {
-        PadlockInteract padlockInteract = gameObject.AddComponent<PadlockInteract>();
-        if (padlockInteract) padlockInteract.SetUpWheel(padlock, positionInPadlock, maxPadlockNumber, rotationToAdd);
+        if (!obejct) return;
 
-        obejct.layer = newlayerMask;
+        PadlockInteract padlockInteract = obejct.AddComponent<PadlockInteract>();
+        if (padlockInteract) 
+        { 
+            padlockInteract.SetUpWheel(padlock, positionInPadlock, maxPadlockNumber, rotationToAdd);
+            obejct.layer = LayerMask.NameToLayer(newLayerName);
+        }
     }
 }

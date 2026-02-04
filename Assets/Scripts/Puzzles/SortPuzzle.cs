@@ -80,7 +80,7 @@ public class SortPuzzle : Puzzle
             if (locked && CheckCombination()) 
             {
                 locked = false;
-                if (actionOnUnlocked) actionOnUnlocked.ExecuteAction();
+                if (actionOnUnlocked) actionOnUnlocked.ExecuteAction(null);
                 Debug.Log("CORECT COMBINATION");
             }
 
