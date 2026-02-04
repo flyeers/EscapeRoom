@@ -10,7 +10,6 @@ public class PlaceItemIntercat : NeedItemInteract
 
     protected override void UseItem() 
     {
-        base.UseItem();
         GameObject obj = Instantiate(itemSO.ItemPrefab, spawnPoint.position, spawnPoint.rotation);
             
         if(deactivatePickUp) 
@@ -20,6 +19,13 @@ public class PlaceItemIntercat : NeedItemInteract
                 pickUpInteract.enabled = false;
                 obj.layer = LayerMask.GetMask("Default");
             } 
+        }
+
+
+        if (action) action.ExecuteActionObject(obj);
+        if (deactivateAfterAction)
+        {
+            gameObject.layer = LayerMask.NameToLayer("Default");
         }
     }
 }

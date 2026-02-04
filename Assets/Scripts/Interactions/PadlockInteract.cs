@@ -27,4 +27,13 @@ public class PadlockInteract : MonoBehaviour, IInteractable
         number = number + 1 > maxPadlockNumber ? 0 : number + 1;
         padlock.SetNumber(positionInPadlock, number);
     }
+
+    public void SetUpWheel(Padlock padlock, int positionInPadlock, int maxPadlockNumber, Vector3 rotationToAdd) 
+    { 
+        this.padlock = padlock;
+        this.positionInPadlock = positionInPadlock;
+        this.maxPadlockNumber = maxPadlockNumber;
+        this.rotationToAdd = rotationToAdd;
+    
+    }
 }

@@ -5,8 +5,8 @@ using UnityEngine;
 public class NeedItemInteract: MonoBehaviour, IInteractable
 {
     [SerializeField] protected ItemSO itemSO;
-    [SerializeField] private Action action;
-    [SerializeField] private bool deactivateAfterAction = false;
+    [SerializeField] protected Action action;
+    [SerializeField] protected bool deactivateAfterAction = false;
 
     [Header("Alternative message")]
     [SerializeField] private bool showAlternativeMessage = true;
