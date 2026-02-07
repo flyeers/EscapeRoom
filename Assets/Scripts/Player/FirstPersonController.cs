@@ -1,6 +1,7 @@
-using Unity.Cinemachine;
+﻿using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.UI.Image;
 
 public class FirstPersonController : Interactor
 {
@@ -93,10 +94,11 @@ public class FirstPersonController : Interactor
     //interaction - base of this logic in Interactor.cs
     protected override bool CheckArea(out RaycastHit hit)
     {
-        //Debug.DrawRay(_transform.position, _transform.forward, Color.red); 
-        if (Physics.Raycast(_transform.position, _transform.forward, out hit, _interactionDistance, _interactableLayer))
-            return true;
-        return false;
+        if (Physics.Raycast(_transform.position, _transform.forward, out hit, _interactionDistance, _obstacleLayer))
+        {
+            return false; //obstacle
+        }
+        return Physics.Raycast(_transform.position, _transform.forward, out hit, _interactionDistance, _interactableLayer);
     }
 
     protected override void HandleUI(bool visible) 

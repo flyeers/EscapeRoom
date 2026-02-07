@@ -172,6 +172,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 289184193190049201}
     m_Modifications:
+    - target: {fileID: 1027055491387254918, guid: f3e84350e2d2e5e479cdbde02694c544, type: 3}
+      propertyPath: m_Radius
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 1584727830295743575, guid: f3e84350e2d2e5e479cdbde02694c544, type: 3}
       propertyPath: m_Name
       value: Statue (3)

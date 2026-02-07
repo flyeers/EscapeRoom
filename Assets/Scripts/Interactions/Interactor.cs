@@ -19,6 +19,7 @@ public class Interactor : MonoBehaviour
 
     [SerializeField] protected float _interactionDistance = 1.5f;
     [SerializeField] protected LayerMask _interactableLayer;
+    [SerializeField] protected LayerMask _obstacleLayer;
     [SerializeField] protected float cooldown = 0.5f;
 
     protected bool _canInteract = true;

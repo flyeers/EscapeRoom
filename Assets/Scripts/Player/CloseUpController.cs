@@ -37,8 +37,6 @@ public class CloseUpController : Interactor
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-
-       // HandleInteractionInfo(false);
     }
 
     void Update()
@@ -65,9 +63,11 @@ public class CloseUpController : Interactor
     {
         Vector2 mousePosition = Mouse.current.position.ReadValue();
         Ray ray = mainCamera.ScreenPointToRay(mousePosition);
-        if (Physics.Raycast(ray, out hit, _interactionDistance, _interactableLayer))
-            return true;
-        return false;
+        if (Physics.Raycast(ray, out hit, _interactionDistance, _obstacleLayer))
+        {
+            return false; //obstacle
+        }
+        return Physics.Raycast(ray, out hit, _interactionDistance, _interactableLayer);
     }
     protected override void HandleUI(bool visible) 
     {
