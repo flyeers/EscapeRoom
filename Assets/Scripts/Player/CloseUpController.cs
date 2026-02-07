@@ -17,16 +17,6 @@ public class CloseUpController : Interactor
     [SerializeField] private CinemachineCamera mainCameraVirtual;
     [SerializeField] private ControllerManager controllerManager;
 
-
-   /* [Header("Interaction parameters")]
-    [SerializeField] private float interactDistance = 5f;
-    [SerializeField] private LayerMask interactableLayer;
-    [SerializeField] private float cooldown = 0.5f;
-
-    private bool _canInteract = true;
-    private Outline _otlineLastSeen;
-    private RaycastHit _lastHit;*/
-
     private void OnEnable()
     {
         Cursor.lockState = CursorLockMode.None;
