@@ -2,61 +2,47 @@ using Assets.Scripts.Interactions;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.UI;
+using UnityEngine.Windows;
 
 
 public class Interactor : MonoBehaviour
 {
-    [SerializeField] private PlayerInputHandler playerInputHandler;
-    [SerializeField] private FirstPersonController firstPersonController;
-    [SerializeField] private Transform cameraTransform;
-
-    [Header("Interaction info")]
-    [SerializeField] private Image image;
-
     [Header("Interaction parameters")]
-    [SerializeField] private float _interactionRadius = 1.5f;
-    [SerializeField] private LayerMask _interactableLayer;
-    //[SerializeField] private LayerMask _obstacleLayer;
-    [SerializeField] private float cooldown = 0.5f;
 
-    private bool _canInteract = true;
-    private Transform _transform;
-    private Outline _otlineLastSeen;
-    private RaycastHit _lastHit;
-
-    private void Awake()
+    [SerializeField] protected PlayerInputHandler playerInputHandler;
+    public enum InteractType
     {
-        _transform = cameraTransform;
+        Interact,
+        InteractClose
     }
+    [SerializeField] private InteractType interactType;
 
-    void Update()
-    {
-        HandleInteraction();
-    }
+    [SerializeField] protected float _interactionDistance = 1.5f;
+    [SerializeField] protected LayerMask _interactableLayer;
+    [SerializeField] protected float cooldown = 0.5f;
+
+    protected bool _canInteract = true;
+    protected Outline _otlineLastSeen;
+    protected RaycastHit _lastHit;
 
     private void OnDisable()
     {
         HandleInteractionInfo(false);
     }
 
-    private void HandleInteraction() 
+    protected void HandleInteraction() 
     {
 
         if (CheckMessageActive()) return;
 
-
-        if (Physics.Raycast(_transform.position, _transform.forward, out var hit, _interactionRadius, _interactableLayer))
+        if (CheckArea(out RaycastHit hit))
         {
-            //Debug.DrawRay(_transform.position, _transform.forward, Color.red); 
-            
             if (hit.transform.TryGetComponent(out IInteractable interactableObject))
             {
                 _lastHit = hit;
                 HandleInteractionInfo(true);
 
-                if (_canInteract && playerInputHandler.InteractTriggered)
+                if (_canInteract && IsInteractTriggered())
                 {
                     interactableObject.Interact(gameObject);
                     StartCoroutine(Cooldown());
@@ -70,13 +56,33 @@ public class Interactor : MonoBehaviour
             HandleInteractionInfo(false);
         }
     }
+    bool IsInteractTriggered()
+    {
+        switch (interactType)
+        {
+            case InteractType.Interact:
+                return playerInputHandler.InteractTriggered;
+
+            case InteractType.InteractClose:
+                return playerInputHandler.InteractCloseTriggered;
+        }
+
+        return false;
+    }
+
+    //IMPORTANTE child should implement this function  
+    protected virtual bool CheckArea(out RaycastHit hit)
+    {
+        hit = new RaycastHit();
+        return false;
+    }
 
     public void HandleInteractionInfo(bool visible) 
     {
         if (visible) 
         {
             //UI
-            if (image != null) image.gameObject.SetActive(true);
+            HandleUI(visible);
 
             //set outline
             Outline _aux = _otlineLastSeen;
@@ -95,7 +101,7 @@ public class Interactor : MonoBehaviour
         else 
         {
             //UI
-            if (image != null) image.gameObject.SetActive(false);
+            HandleUI(visible);
 
             //set outline
             if (_otlineLastSeen)
@@ -106,26 +112,32 @@ public class Interactor : MonoBehaviour
         }
     }
 
-    private bool CheckMessageActive() 
+    //IMPORTANTE child should implement this function  
+    protected virtual void HandleUI(bool visible) { }
+
+    protected bool CheckMessageActive() 
     {
         GameObject messageUI = GameObject.FindGameObjectWithTag("MessageUI");
         if (messageUI != null)
         {
-            //Block movement
-            firstPersonController.SetCanMove(false);
+            //Block movement 
+            HandleCanMove(false);
 
-            if (_canInteract && playerInputHandler.InteractTriggered)
+            if (_canInteract && IsInteractTriggered())
             {
                 //Close menu if oppen
                 Destroy(messageUI);
                 StartCoroutine(Cooldown());
                 //Unblock movement
-                firstPersonController.SetCanMove(true);
+                HandleCanMove(true);
             }
             return true;
         }
         return false;
     }
+
+    //IMPORTANTE child should implement this function  (if needed)
+    protected virtual void HandleCanMove(bool canMove) { }
 
     IEnumerator Cooldown()
     {

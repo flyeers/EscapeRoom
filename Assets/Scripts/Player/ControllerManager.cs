@@ -7,7 +7,6 @@ public class ControllerManager : MonoBehaviour
 {
     [SerializeField] private PlayerInputHandler playerInputHandler;
     [SerializeField] private FirstPersonController firstPersoncontroller;
-    [SerializeField] private Interactor interactor;
     [SerializeField] private CloseUpController closeUpController;
     [SerializeField] private CinemachineCamera mainCamera;
 
@@ -26,7 +25,6 @@ public class ControllerManager : MonoBehaviour
     {
         playerInputHandler.SetPlayerMap(isFirstPersonController);
         firstPersoncontroller.enabled = isFirstPersonController;
-        interactor.enabled = isFirstPersonController;
 
         playerInputHandler.SetCloseUpMap(!isFirstPersonController);
         closeUpController.enabled = !isFirstPersonController;

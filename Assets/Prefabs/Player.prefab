@@ -139,7 +139,6 @@ GameObject:
   - component: {fileID: 8801920807905284414}
   - component: {fileID: 6187895261322395717}
   - component: {fileID: 4736196709564627320}
-  - component: {fileID: 5526983818417189874}
   - component: {fileID: 6327559171168229599}
   - component: {fileID: 6043529825811447138}
   - component: {fileID: 6291953296493586280}
@@ -206,37 +205,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfb715a60809bee409b7fbdc7bc2fd66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FirstPersonController
+  playerInputHandler: {fileID: 1580756165105969009}
+  interactType: 0
+  _interactionDistance: 3
+  _interactableLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  cooldown: 0.25
+  cameraTransform: {fileID: 1406475970893915083}
+  image: {fileID: 0}
   characterController: {fileID: 6187895261322395717}
   mainCamera: {fileID: 5934984835435599833}
-  playerInputHandler: {fileID: 1580756165105969009}
   walkSpeed: 3
   sprintMultiplier: 2
   mouseSensitivity: 0.1
   upDownLookRange: 80
---- !u!114 &5526983818417189874
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1948590796148203252}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd1df106172fba7438b2be5a54a59960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Interactor
-  playerInputHandler: {fileID: 1580756165105969009}
-  firstPersonController: {fileID: 4736196709564627320}
-  cameraTransform: {fileID: 1406475970893915083}
-  image: {fileID: 0}
-  _interactionRadius: 3
-  _interactableLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  _obstacleLayer:
-    serializedVersion: 2
-    m_Bits: 129
-  cooldown: 0.25
 --- !u!114 &6327559171168229599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,18 +232,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7533bfac66db5584d94381b4482c8907, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CloseUpController
+  playerInputHandler: {fileID: 1580756165105969009}
+  interactType: 1
+  _interactionDistance: 10
+  _interactableLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  cooldown: 0.25
+  imageCursor: {fileID: 2800000, guid: e08301eaf888d2e4ea68f912f6b577b9, type: 3}
   characterController: {fileID: 6187895261322395717}
   firstPersonController: {fileID: 4736196709564627320}
   mainCamera: {fileID: 8036528772203318051}
   mainCameraVirtual: {fileID: 5934984835435599833}
-  playerInputHandler: {fileID: 1580756165105969009}
   controllerManager: {fileID: 6043529825811447138}
-  imageCursor: {fileID: 2800000, guid: e08301eaf888d2e4ea68f912f6b577b9, type: 3}
-  interactDistance: 10
-  interactableLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  cooldown: 0.25
 --- !u!114 &6043529825811447138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,7 +259,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ControllerManager
   playerInputHandler: {fileID: 1580756165105969009}
   firstPersoncontroller: {fileID: 4736196709564627320}
-  interactor: {fileID: 5526983818417189874}
   closeUpController: {fileID: 6327559171168229599}
   mainCamera: {fileID: 5934984835435599833}
   isFirstPersonController: 1
@@ -292,6 +275,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryManager
   inventory: []
+  maxInventoryCapacity: 5
+  inventoryUI: {fileID: 0}
 --- !u!1 &3452794886703103651
 GameObject:
   m_ObjectHideFlags: 0

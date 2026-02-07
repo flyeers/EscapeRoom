@@ -5,27 +5,27 @@ using UnityEditor.Timeline.Actions;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CloseUpController : MonoBehaviour
+public class CloseUpController : Interactor
 {
+    [Header("Interaction info")]
+    [SerializeField] private Texture2D imageCursor;
+
+    [Header("References")]
     [SerializeField] private CharacterController characterController;
     [SerializeField] private FirstPersonController firstPersonController;
     [SerializeField] private Camera mainCamera;
     [SerializeField] private CinemachineCamera mainCameraVirtual;
-    [SerializeField] private PlayerInputHandler playerInputHandler;
     [SerializeField] private ControllerManager controllerManager;
 
 
-    [Header("Interaction info")]
-    [SerializeField] private Texture2D imageCursor;
-
-    [Header("Interaction parameters")]
+   /* [Header("Interaction parameters")]
     [SerializeField] private float interactDistance = 5f;
     [SerializeField] private LayerMask interactableLayer;
     [SerializeField] private float cooldown = 0.5f;
 
     private bool _canInteract = true;
     private Outline _otlineLastSeen;
-    private RaycastHit _lastHit;
+    private RaycastHit _lastHit;*/
 
     private void OnEnable()
     {
@@ -38,15 +38,17 @@ public class CloseUpController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        HandleInteractionInfo(false);
+       // HandleInteractionInfo(false);
     }
 
     void Update()
     {
-        HandleClick();
+        HandleBack();
+        HandleInteraction();
     }
 
-    private void HandleClick()
+    //back
+    private void HandleBack()
     {
         if (CheckMessageActive()) return;
 
@@ -56,90 +58,28 @@ public class CloseUpController : MonoBehaviour
             controllerManager.ChangeControllers(true, mainCameraVirtual);
             return;
         }
+    }
 
-        // Object to interact
+    //interaction - base of this logic in Interactor.cs
+    protected override bool CheckArea(out RaycastHit hit)
+    {
         Vector2 mousePosition = Mouse.current.position.ReadValue();
         Ray ray = mainCamera.ScreenPointToRay(mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hit, interactDistance, interactableLayer))
+        if (Physics.Raycast(ray, out hit, _interactionDistance, _interactableLayer))
+            return true;
+        return false;
+    }
+    protected override void HandleUI(bool visible) 
+    {
+
+        if (visible) 
         {
-            //Debug.DrawLine(ray.origin, hit.point, Color.green);
-
-            if (hit.collider.TryGetComponent<IInteractable>(out IInteractable interactable))
-            {
-                _lastHit = hit;
-                HandleInteractionInfo(true);
-
-                if (_canInteract && playerInputHandler.InteractCloseTriggered)
-                {
-                    interactable.Interact(gameObject);
-                    StartCoroutine(Cooldown());
-                }
-            }
+            Cursor.SetCursor(imageCursor, Vector2.zero, CursorMode.Auto);
         }
         else 
         {
-            _lastHit = hit;
-            HandleInteractionInfo(false);
-        }
-        
-    }
-
-    public void HandleInteractionInfo(bool visible)
-    {
-        if (visible)
-        {
-            //UI
-            Cursor.SetCursor(imageCursor, Vector2.zero, CursorMode.Auto);
-
-            //set outline
-            Outline _aux = _otlineLastSeen;
-            _otlineLastSeen = _lastHit.transform.GetComponent<Outline>() ??
-                                _lastHit.transform.GetComponentInParent<Outline>() ??
-                                _lastHit.transform.GetComponentInChildren<Outline>();
-            if (_otlineLastSeen)
-            {
-                _otlineLastSeen.enabled = true;
-                if (_aux && _aux.transform.root != _otlineLastSeen.transform.root)
-                {
-                    _aux.enabled = false;
-                }
-            }
-        }
-        else
-        {
-            //UI
             Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
-
-            //set outline
-             if (_otlineLastSeen)
-             {
-                 _otlineLastSeen.enabled = false;
-                 _otlineLastSeen = null;
-             }
         }
-    }
-
-    private bool CheckMessageActive()
-    {
-        GameObject messageUI = GameObject.FindGameObjectWithTag("MessageUI");
-        if (messageUI != null)
-        {
-            if (_canInteract && playerInputHandler.InteractCloseTriggered)
-            {
-                //Close menu if oppen
-                Destroy(messageUI);
-                StartCoroutine(Cooldown());
-            }
-            return true;
-        }
-        return false;
-    }
-
-    IEnumerator Cooldown()
-    {
-        _canInteract = false;
-        yield return new WaitForSeconds(cooldown);
-        _canInteract = true;
     }
 
 }

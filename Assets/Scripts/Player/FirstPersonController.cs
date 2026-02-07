@@ -1,11 +1,18 @@
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class FirstPersonController : MonoBehaviour
+public class FirstPersonController : Interactor
 {
+    [SerializeField] private Transform cameraTransform;
+    private Transform _transform;
+
+    [Header("Interaction info")]
+    [SerializeField] protected Image image;
+
+    [Header("References")]
     [SerializeField] private CharacterController characterController;
     [SerializeField] public CinemachineCamera mainCamera;
-    [SerializeField] public PlayerInputHandler playerInputHandler;
 
     [Header("Movement")]
     [SerializeField] private float walkSpeed = 3.0f;
@@ -21,15 +28,17 @@ public class FirstPersonController : MonoBehaviour
     private float CurrentSpeed => walkSpeed * (playerInputHandler.SprintTriggered ? sprintMultiplier : 1);
 
 
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        _transform = cameraTransform;
+    }
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
-
-    // Update is called once per frame
     void Update()
     {
         if (canMove) 
@@ -37,9 +46,10 @@ public class FirstPersonController : MonoBehaviour
             HandleMovement();
             HandleRotation();
         }
+        HandleInteraction();
     }
 
-
+    //movement
     private Vector3 CalculateWorldDirection()
     {
 
@@ -58,19 +68,17 @@ public class FirstPersonController : MonoBehaviour
         characterController.Move(currentMovement * Time.deltaTime);
     }
 
-
+    //rotation
     private void ApplyHorizontalRotation(float rotationAmount)
     {
         transform.Rotate(0, rotationAmount, 0);
     }
-
 
     private void ApplyVerticalRotation(float rotationAmount)
     {
         verticalRotation = Mathf.Clamp(verticalRotation - rotationAmount, -upDownLookRange, upDownLookRange);
         mainCamera.transform.localRotation = Quaternion.Euler(verticalRotation, 0, 0);
     }
-
 
     private void HandleRotation()
     {
@@ -82,9 +90,29 @@ public class FirstPersonController : MonoBehaviour
         ApplyVerticalRotation(mouseYRotation);
     }
 
-    public void SetCanMove(bool canMove) 
+    //interaction - base of this logic in Interactor.cs
+    protected override bool CheckArea(out RaycastHit hit)
+    {
+        //Debug.DrawRay(_transform.position, _transform.forward, Color.red); 
+        if (Physics.Raycast(_transform.position, _transform.forward, out hit, _interactionDistance, _interactableLayer))
+            return true;
+        return false;
+    }
+
+    protected override void HandleUI(bool visible) 
+    {
+        if (image != null) image.gameObject.SetActive(visible);
+    }
+
+    protected override void HandleCanMove(bool canMove) 
     {
         this.canMove = canMove;
     }
+
+
+    /*public void SetCanMove(bool canMove) 
+    {
+        this.canMove = canMove;
+    }*/
 
 }
