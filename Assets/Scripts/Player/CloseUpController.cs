@@ -51,13 +51,20 @@ public class CloseUpController : Interactor
     //interaction - base of this logic in Interactor.cs
     protected override bool CheckArea(out RaycastHit hit)
     {
+        /* Vector2 mousePosition = Mouse.current.position.ReadValue();
+         Ray ray = mainCamera.ScreenPointToRay(mousePosition);
+         if (Physics.Raycast(ray, out hit, _interactionDistance, _obstacleLayer))
+         {
+             return false; //obstacle
+         }
+         return Physics.Raycast(ray, out hit, _interactionDistance, _interactableLayer);*/
+
+        LayerMask mask = _interactableLayer | _obstacleLayer;
         Vector2 mousePosition = Mouse.current.position.ReadValue();
         Ray ray = mainCamera.ScreenPointToRay(mousePosition);
-        if (Physics.Raycast(ray, out hit, _interactionDistance, _obstacleLayer))
-        {
-            return false; //obstacle
-        }
-        return Physics.Raycast(ray, out hit, _interactionDistance, _interactableLayer);
+
+        return Physics.Raycast(ray, out hit, _interactionDistance, mask);
+
     }
     protected override void HandleUI(bool visible) 
     {

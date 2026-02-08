@@ -94,11 +94,14 @@ public class FirstPersonController : Interactor
     //interaction - base of this logic in Interactor.cs
     protected override bool CheckArea(out RaycastHit hit)
     {
-        if (Physics.Raycast(_transform.position, _transform.forward, out hit, _interactionDistance, _obstacleLayer))
-        {
-            return false; //obstacle
-        }
-        return Physics.Raycast(_transform.position, _transform.forward, out hit, _interactionDistance, _interactableLayer);
+        LayerMask mask = _interactableLayer | _obstacleLayer;
+        return Physics.Raycast(
+            _transform.position,
+            _transform.forward,
+            out hit,
+            _interactionDistance,
+            mask
+        );
     }
 
     protected override void HandleUI(bool visible) 

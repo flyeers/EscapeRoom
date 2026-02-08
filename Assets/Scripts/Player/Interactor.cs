@@ -36,7 +36,7 @@ public class Interactor : MonoBehaviour
 
         if (CheckMessageActive()) return;
 
-        if (CheckArea(out RaycastHit hit))
+        if (CheckArea(out RaycastHit hit) && ((1 << hit.collider.gameObject.layer) & _obstacleLayer) == 0) //hit + no obstacle
         {
             if (hit.transform.TryGetComponent(out IInteractable interactableObject))
             {
