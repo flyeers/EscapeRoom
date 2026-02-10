@@ -3,9 +3,8 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    [SerializeField] private List<InventoryItem> inventory = new List<InventoryItem>();
+    [SerializeField] private List<ItemSO> inventory = new List<ItemSO>();
     [SerializeField] private int maxInventoryCapacity = 5;
-    private Dictionary<ItemSO, InventoryItem> itemInstances = new Dictionary<ItemSO, InventoryItem>();
 
     [SerializeField] private InventoryUI inventoryUI;
 
@@ -13,47 +12,25 @@ public class InventoryManager : MonoBehaviour
     public bool AddItem(ItemSO itemSO) 
     {
         if(inventory.Count == maxInventoryCapacity) return false; //inventory is full
-
-        if(itemInstances.TryGetValue(itemSO, out InventoryItem item)) //it existed in the inventory
-        {
-            item.AddToStack();
-
-            if(inventoryUI) inventoryUI.AddStackUI(inventory.IndexOf(item));
-        }
-        else 
-        {
-            InventoryItem newItem = new InventoryItem(itemSO);
-            inventory.Add(newItem);
-            itemInstances.Add(itemSO, newItem);
-
-            if (inventoryUI) inventoryUI.AddItemUI(itemSO.ItemSprite);
-        }
+        
+        inventory.Add(itemSO);
+        if (inventoryUI) inventoryUI.AddItemUI(itemSO.ItemSprite);
 
         return true;
     }
 
-    public void RemoveItem(ItemSO itemSO) 
+    public bool RemoveItem(ItemSO itemSO) 
     {
-        if (itemInstances.TryGetValue(itemSO, out InventoryItem item)) //it existed in the inventory
-        {
-            item.RemoveFromStack();
-            if (item.stackSize == 0)
-            {
-                if (inventoryUI) inventoryUI.RemoveItemUI(inventory.IndexOf(item));
-
-                inventory.Remove(item);
-                itemInstances.Remove(itemSO);
-            }
-            else 
-            {
-                if (inventoryUI) inventoryUI.RemoveStackUI(inventory.IndexOf(item));
-            }
-        }
+        if (!inventory.Contains(itemSO)) return false; //it existed in the inventory
+                  
+        if (inventoryUI) inventoryUI.RemoveItemUI(inventory.IndexOf(itemSO));
+        inventory.Remove(itemSO);
+        return true;
     }
 
     public bool CheckForItem(ItemSO itemSO)
     {
-        if (itemInstances.TryGetValue(itemSO, out InventoryItem item)) return true;
+        if (inventory.Contains(itemSO)) return true;
         return false;
     }
 

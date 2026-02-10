@@ -15,12 +15,6 @@ public class InventoryUI : MonoBehaviour
         itemsImages[itemCount].sprite = itemSprite;
         itemsImages[itemCount].enabled = true;
     }
-    public void AddStackUI(int index)
-    {
-        Debug.Log("UI FOR MULTIPLE EQUAL ELEMENTS NOT IMPLEMENTED");
-    }
-
-
     public void RemoveItemUI(int index)
     {
         if (index >= itemsImages.Length) return; //not in UI  
@@ -46,11 +40,4 @@ public class InventoryUI : MonoBehaviour
 
         itemCount--;
     }
-    public void RemoveStackUI(int index)
-    {
-        Debug.Log("UI FOR MULTIPLE EQUAL ELEMENTS NOT IMPLEMENTED");
-    }
-
-
-
 }
