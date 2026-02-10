@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SortPieceInteract
   sortPuzzle: {fileID: 5286252172895684703}
+  positionInPuzzle: 0
   piece:
     id: 1
     type: 1
@@ -197,15 +198,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SortPuzzle
   actionOnUnlocked: {fileID: 0}
-  piecesOrder:
-  - id: 1
-    type: 1
-  - id: 2
-    type: 2
-  - id: 3
-    type: 3
-  - id: 4
-    type: 3
   piecesAimOrderTypes: 03000000030000000200000001000000
   movementOnSelected: {x: 0, y: 0.1, z: 0}
 --- !u!1 &6370117711702463891
@@ -335,6 +327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SortPieceInteract
   sortPuzzle: {fileID: 5286252172895684703}
+  positionInPuzzle: 2
   piece:
     id: 3
     type: 3
@@ -483,6 +476,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SortPieceInteract
   sortPuzzle: {fileID: 5286252172895684703}
+  positionInPuzzle: 1
   piece:
     id: 2
     type: 2
@@ -631,6 +625,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SortPieceInteract
   sortPuzzle: {fileID: 5286252172895684703}
+  positionInPuzzle: 3
   piece:
     id: 4
     type: 3

@@ -4,7 +4,6 @@ using UnityEngine;
 public class ItemSO : ScriptableObject
 {
     public string Name;
-    public string Description;
     public bool consumable;
     public Sprite ItemSprite;
     public GameObject ItemPrefab;

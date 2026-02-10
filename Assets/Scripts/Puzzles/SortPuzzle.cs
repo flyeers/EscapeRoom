@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 [System.Serializable]
 public struct Piece 
@@ -18,8 +19,7 @@ public struct Piece
 public class SortPuzzle : Puzzle
 {
     [Header("Sort pieces")]
-    [SerializeField, Tooltip("Set up with initial order in world")] 
-    private List<Piece> piecesOrder = new List<Piece> { new Piece(1,1), new Piece(2, 2), new Piece(3, 3) };
+    private List<Piece> piecesOrder;
     [SerializeField] private List<int> piecesAimOrderTypes = new List<int> { 1, 2, 3 }; //TYPES
 
 
@@ -28,6 +28,18 @@ public class SortPuzzle : Puzzle
 
     private Piece pieceSelected = new Piece(-1, -1);
     private GameObject pieceSelectedObject;
+
+    private void Awake()
+    {
+        int length = piecesAimOrderTypes.Count;
+        piecesOrder = Enumerable.Repeat(new Piece(0, 0), length).ToList();
+    }
+
+    public void SetPiece(Piece piece,  int position) 
+    {
+        if (position >= piecesOrder.Count) return;
+        piecesOrder[position] = piece;
+    }
 
     private bool CheckCombination()
     {
