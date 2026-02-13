@@ -1,10 +1,11 @@
 using Assets.Scripts.Interactions;
 using NUnit.Framework.Interfaces;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class NeedItemInteract: MonoBehaviour, IInteractable
 {
-    [SerializeField] protected ItemSO itemSO;
+    [SerializeField] protected List<ItemSO> itemsSO = new List<ItemSO>(1);
     [SerializeField] protected Action action;
     [SerializeField] protected bool deactivateAfterAction = false;
 
@@ -13,13 +14,15 @@ public class NeedItemInteract: MonoBehaviour, IInteractable
     [SerializeField] private ShowMessageSO showMessageSO;
     public string messageText = "";
 
+    protected ItemSO itemSO; 
 
     public void Interact(GameObject interactor)
     {
         InventoryManager inventory = interactor.gameObject.GetComponentInChildren<InventoryManager>();
         if (inventory)
         {
-            if (inventory.GetActiveItem() == itemSO) 
+            itemSO = inventory.GetActiveItem();
+            if (itemSO && itemsSO.Count != 0 && itemsSO.Contains(itemSO)) 
             {
                 if(itemSO.consumable) inventory.RemoveItem(); //if consumable remove from inventory
                 UseItem();

@@ -145,14 +145,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50f2bf4d16f034a438984ac3274e3985, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlaceItemIntercat
-  itemSO: {fileID: 11400000, guid: 83aecf1d71efeeb49bb602d6f7b3fd95, type: 2}
+  itemsSO:
+  - {fileID: 11400000, guid: 83aecf1d71efeeb49bb602d6f7b3fd95, type: 2}
   action: {fileID: 0}
   deactivateAfterAction: 1
   showAlternativeMessage: 1
   showMessageSO: {fileID: 11400000, guid: 5fe7a399f1d44b2408a3facc2e1c2e8d, type: 2}
   messageText: No item to place
   spawnPoint: {fileID: 731733209021843964}
-  deactivatePickUp: 1
+  removePickUp: 1
 --- !u!1 &8786871457699972015
 GameObject:
   m_ObjectHideFlags: 0
