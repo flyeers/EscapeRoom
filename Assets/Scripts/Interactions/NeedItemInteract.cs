@@ -14,18 +14,19 @@ public class NeedItemInteract: MonoBehaviour, IInteractable
     [SerializeField] private ShowMessageSO showMessageSO;
     public string messageText = "";
 
-    protected ItemSO itemSO; 
+    protected ItemSO itemSO;
+    protected InventoryManager inventory;
 
     public void Interact(GameObject interactor)
     {
-        InventoryManager inventory = interactor.gameObject.GetComponentInChildren<InventoryManager>();
+        inventory = interactor.gameObject.GetComponentInChildren<InventoryManager>();
         if (inventory)
         {
             itemSO = inventory.GetActiveItem();
             if (itemSO && itemsSO.Count != 0 && itemsSO.Contains(itemSO)) 
             {
                 if(itemSO.consumable) inventory.RemoveItem(); //if consumable remove from inventory
-                UseItem();
+                UseItem(interactor);
             }
             else 
             {
@@ -35,7 +36,7 @@ public class NeedItemInteract: MonoBehaviour, IInteractable
         }
     }
 
-    protected virtual void UseItem() 
+    protected virtual void UseItem(GameObject interactor) 
     {
         if (action) action.ExecuteAction(null);
         Debug.Log("OPEEEN");
