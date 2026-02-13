@@ -41,6 +41,33 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ActivateItem",
+                    "type": "Button",
+                    "id": "26784f4e-6fa8-4665-9905-798baebc9a13",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PreviousItem",
+                    "type": "Button",
+                    "id": "7939da5d-82f4-4ee5-9ff1-d5c5302a8170",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "NextItem",
+                    "type": "Button",
+                    "id": "23f9239f-fc0f-49b6-97d1-2a60da5a2737",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -131,6 +158,39 @@
                     "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1f90bc34-5744-4da4-8ad5-5816b4d6ed20",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActivateItem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "42c359dc-3475-43bf-b018-9e25c875b072",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PreviousItem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1c479ae4-3c3b-412f-8896-875506f731d9",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NextItem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -151,6 +211,33 @@
                     "name": "Interact",
                     "type": "Button",
                     "id": "7cf697bd-73a4-4ff4-9c31-56cc22b4e3f7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ActivateItem",
+                    "type": "Button",
+                    "id": "1603c890-259f-4c33-afa2-3a14510c47fd",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PreviousItem",
+                    "type": "Button",
+                    "id": "d4d183e7-a9e8-4845-9d42-ab399ae9e332",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "NextItem",
+                    "type": "Button",
+                    "id": "f3dd9b0a-be9a-4b1e-bccf-630e571acc13",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -177,6 +264,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c072c7ac-c258-44fb-b4e1-739e82d0c965",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActivateItem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4d31da0b-d74d-48f0-bea3-4e7230a064bf",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PreviousItem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a84e7857-6e7c-4e14-87b6-b482fcdfa3aa",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NextItem",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

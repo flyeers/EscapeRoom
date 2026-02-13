@@ -19,9 +19,9 @@ public class NeedItemInteract: MonoBehaviour, IInteractable
         InventoryManager inventory = interactor.gameObject.GetComponentInChildren<InventoryManager>();
         if (inventory)
         {
-            if (inventory.CheckForItem(itemSO)) 
+            if (inventory.GetActiveItem() == itemSO) 
             {
-                if(itemSO.consumable) inventory.RemoveItem(itemSO); //if consumable remove from inventory
+                if(itemSO.consumable) inventory.RemoveItem(); //if consumable remove from inventory
                 UseItem();
             }
             else 

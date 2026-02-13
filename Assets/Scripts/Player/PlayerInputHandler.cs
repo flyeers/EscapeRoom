@@ -21,6 +21,12 @@ public class PlayerInputHandler : MonoBehaviour
     [SerializeField] private string back = "Back";
     [SerializeField] private string interactClose = "Interact";
 
+    [Header("Shared action names")]
+    [SerializeField] private string activeItem = "ActivateItem";
+    [SerializeField] private string prevItem = "PreviousItem";
+    [SerializeField] private string nextItem = "NextItem";
+
+
     private InputAction movementAction;
     private InputAction rotationAction;
     private InputAction sprintAction;
@@ -28,6 +34,14 @@ public class PlayerInputHandler : MonoBehaviour
 
     private InputAction backAction;
     private InputAction interactCloseAction;
+
+    private InputAction activeItemAction;
+    private InputAction prevItemAction;
+    private InputAction nextItemAction;
+
+    private InputAction activeItemCloseAction;
+    private InputAction prevItemCloseAction;
+    private InputAction nextItemCloseAction;
 
     public Vector2 MovementInput { get; private set; }
     public Vector2 RotationInput { get; private set; }
@@ -37,6 +51,10 @@ public class PlayerInputHandler : MonoBehaviour
 
     public bool BackTriggered { get; private set; }
     public bool InteractCloseTriggered { get; private set; }
+
+    public bool ActiveItemActionTriggered { get; private set; }
+    public bool PreveItemActionTriggered { get; private set; }
+    public bool NextItemActionTriggered { get; private set; }
 
 
     private void Awake()
@@ -51,6 +69,15 @@ public class PlayerInputHandler : MonoBehaviour
         InputActionMap mapReferenceCloseUp = playerControls.FindActionMap(actionMapNameColoseUp);
         backAction = mapReferenceCloseUp.FindAction(back);
         interactCloseAction = mapReferenceCloseUp.FindAction(interactClose);
+
+        //Shared
+        activeItemAction = mapReference.FindAction(activeItem);
+        activeItemCloseAction = mapReferenceCloseUp.FindAction(activeItem);
+        prevItemAction = mapReference.FindAction(prevItem);
+        prevItemCloseAction = mapReferenceCloseUp.FindAction(prevItem);
+        nextItemAction = mapReference.FindAction(nextItem);
+        nextItemCloseAction = mapReferenceCloseUp.FindAction(nextItem);
+
 
         SubscribeActionValuesToInputEvents();
     }
@@ -76,6 +103,23 @@ public class PlayerInputHandler : MonoBehaviour
 
         interactCloseAction.performed += inputInfo => InteractCloseTriggered = true;
         interactCloseAction.canceled += inputInfo => InteractCloseTriggered = false;
+
+        //Shared
+        activeItemAction.performed += inputInfo => ActiveItemActionTriggered = true;
+        activeItemAction.canceled += inputInfo => ActiveItemActionTriggered = false;
+        activeItemCloseAction.performed += inputInfo => ActiveItemActionTriggered = true;
+        activeItemCloseAction.canceled += inputInfo => ActiveItemActionTriggered = false;
+
+        prevItemAction.performed += inputInfo => PreveItemActionTriggered = true;
+        prevItemAction.canceled += inputInfo => PreveItemActionTriggered = false;
+        prevItemCloseAction.performed += inputInfo => PreveItemActionTriggered = true;
+        prevItemCloseAction.canceled += inputInfo => PreveItemActionTriggered = false;
+
+        nextItemAction.performed += inputInfo => NextItemActionTriggered = true;
+        nextItemAction.canceled += inputInfo => NextItemActionTriggered = false;
+        nextItemCloseAction.performed += inputInfo => NextItemActionTriggered = true;
+        nextItemCloseAction.canceled += inputInfo => NextItemActionTriggered = false;
+
     }
 
 

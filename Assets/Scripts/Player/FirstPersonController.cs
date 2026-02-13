@@ -46,6 +46,7 @@ public class FirstPersonController : Interactor
         { 
             HandleMovement();
             HandleRotation();
+            HandleInventory();
         }
         HandleInteraction();
     }

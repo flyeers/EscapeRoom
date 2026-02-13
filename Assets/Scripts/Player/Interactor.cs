@@ -10,6 +10,8 @@ public class Interactor : MonoBehaviour
     [Header("Interaction parameters")]
 
     [SerializeField] protected PlayerInputHandler playerInputHandler;
+    [SerializeField] protected InventoryManager inventoryManager;
+
     public enum InteractType
     {
         Interact,
@@ -145,6 +147,30 @@ public class Interactor : MonoBehaviour
         _canInteract = false;
         yield return new WaitForSeconds(cooldown);
         _canInteract = true;
+    }
+
+
+    //INVENTORY 
+    protected void HandleInventory() 
+    {
+        if (_canInteract && inventoryManager) 
+        { 
+            if (playerInputHandler.ActiveItemActionTriggered) 
+            {
+                inventoryManager.SetItemActive();
+                StartCoroutine(Cooldown());
+            }
+            else if (playerInputHandler.PreveItemActionTriggered) 
+            {
+                inventoryManager.ActivateItem(true);
+                StartCoroutine(Cooldown());
+            }
+            else if (playerInputHandler.NextItemActionTriggered) 
+            {
+                inventoryManager.ActivateItem(false);
+                StartCoroutine(Cooldown());
+            }
+        }
     }
 
 }
