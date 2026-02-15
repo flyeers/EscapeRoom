@@ -26,8 +26,9 @@ public class LightsSystem : MonoBehaviour
         {
             lightbulbInfoDictionary.Add(l.itemSO, l);
 
-            //GameObject[] objs = GameObject.FindGameObjectsWithTag(l.tagName);
-            //obejctToAppearDictionary.Add(l.itemSO, objs);
+            GameObject[] objs = GameObject.FindGameObjectsWithTag(l.tagName);
+            obejctToAppearDictionary.Add(l.itemSO, objs);
+            SetObejcts(l.itemSO, false);
         }
     }
 
@@ -53,7 +54,7 @@ public class LightsSystem : MonoBehaviour
         }   
     }
 
-    public void SetLight(ItemSO itemSO, bool on)
+    private void SetLight(ItemSO itemSO, bool on)
     {
         if (!itemSO) return; //no light bolb
         
@@ -61,13 +62,20 @@ public class LightsSystem : MonoBehaviour
         if(on) lightbulb.color = lightbulbInfoDictionary[itemSO].lihtColor;
         lightbulb.enabled = on;
 
+        SetObejcts(itemSO, on);
+
+    }
+
+    private void SetObejcts(ItemSO itemSO, bool on)
+    {
         //object to appear 
         if (obejctToAppearDictionary.Count == 0 || !obejctToAppearDictionary.ContainsKey(itemSO)) return;
         foreach (GameObject obj in obejctToAppearDictionary[itemSO])
         {
-            var rend = obj.GetComponentInChildren<Renderer>();
+            /*var rend = obj.GetComponentInChildren<Renderer>();
             if (rend)
-                rend.enabled = on;
+                rend.enabled = on;*/
+            obj.SetActive(on);
         }
 
     }
