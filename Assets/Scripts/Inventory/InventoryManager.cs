@@ -69,12 +69,15 @@ public class InventoryManager : MonoBehaviour
         {
             if (inventory.Count == 1) return;
 
+            //deactive UI
+            if (inventoryUI) inventoryUI.SetBackgroudSelected(activeItemIndex, false);
 
+            //set new index - destroy old instantiate new item
             if (setPrevious) activeItemIndex = activeItemIndex - 1 < 0 ? inventory.Count - 1 : activeItemIndex - 1;//Previous item
             else activeItemIndex = activeItemIndex + 1 >= inventory.Count ? 0 : activeItemIndex + 1;  //NextItem
             Destroy(activeItem);
-            InstantiateActiveItem();        
-                
+            InstantiateActiveItem();
+
         }
 
     }
@@ -84,9 +87,15 @@ public class InventoryManager : MonoBehaviour
         ItemSO newItemSO = inventory[activeItemIndex];
         activeItem = Instantiate(newItemSO.ItemPrefab, activeItemPos.position, activeItemPos.rotation);
         activeItem.transform.SetParent(activeItemPos);
+
+        //active UI
+        if (inventoryUI) inventoryUI.SetBackgroudSelected(activeItemIndex, true);
     }
     private void DestroyActiveItem() 
     {
+        //deactive UI
+        if (inventoryUI) inventoryUI.SetBackgroudSelected(activeItemIndex, false);
+
         Destroy(activeItem);
         activeItem = null;
         activeItemIndex = -1;

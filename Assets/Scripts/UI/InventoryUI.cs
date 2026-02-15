@@ -1,9 +1,14 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
     [SerializeField] private Image[] itemsImages;
+    [SerializeField] private Image[] backgroundImages;
+    [SerializeField] private float selectedAlpha = 0.9f;
+    [SerializeField] private float notSelectedAlpha = 0.3f;
+
 
     private int itemCount = -1;
 
@@ -39,5 +44,15 @@ public class InventoryUI : MonoBehaviour
         }
 
         itemCount--;
+    }
+
+    public void SetBackgroudSelected(int index, bool selected) 
+    { 
+        if(index >= backgroundImages.Length) return;
+        
+        Color c = backgroundImages[index].color;
+        c.a = selected ? selectedAlpha: notSelectedAlpha;
+        backgroundImages[index].color = c;
+
     }
 }
