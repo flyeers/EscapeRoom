@@ -12,16 +12,15 @@ public class PlayerInputHandler : MonoBehaviour
     [SerializeField] private string movement = "Movement";
     [SerializeField] private string rotation = "Rotation";
     [SerializeField] private string sprint = "Sprint";
-    [SerializeField] private string interact = "Interact";
 
     [Header("Input CloseUp")]
     [SerializeField] private string actionMapNameColoseUp = "CloseUp";
 
     [Header("Action names")]
     [SerializeField] private string back = "Back";
-    [SerializeField] private string interactClose = "Interact";
 
     [Header("Shared action names")]
+    [SerializeField] private string interact = "Interact";
     [SerializeField] private string activeItem = "ActivateItem";
     [SerializeField] private string prevItem = "PreviousItem";
     [SerializeField] private string nextItem = "NextItem";
@@ -50,8 +49,6 @@ public class PlayerInputHandler : MonoBehaviour
 
 
     public bool BackTriggered { get; private set; }
-    public bool InteractCloseTriggered { get; private set; }
-
     public bool ActiveItemActionTriggered { get; private set; }
     public bool PreveItemActionTriggered { get; private set; }
     public bool NextItemActionTriggered { get; private set; }
@@ -63,14 +60,14 @@ public class PlayerInputHandler : MonoBehaviour
         movementAction = mapReference.FindAction(movement);
         rotationAction = mapReference.FindAction(rotation);
         sprintAction = mapReference.FindAction(sprint);
-        interactAction = mapReference.FindAction(interact);
 
         //CloseUp
         InputActionMap mapReferenceCloseUp = playerControls.FindActionMap(actionMapNameColoseUp);
         backAction = mapReferenceCloseUp.FindAction(back);
-        interactCloseAction = mapReferenceCloseUp.FindAction(interactClose);
 
         //Shared
+        interactAction = mapReference.FindAction(interact);
+        interactCloseAction = mapReferenceCloseUp.FindAction(interact);
         activeItemAction = mapReference.FindAction(activeItem);
         activeItemCloseAction = mapReferenceCloseUp.FindAction(activeItem);
         prevItemAction = mapReference.FindAction(prevItem);
@@ -101,8 +98,8 @@ public class PlayerInputHandler : MonoBehaviour
         backAction.performed += inputInfo => BackTriggered = true;
         backAction.canceled += inputInfo => BackTriggered = false;
 
-        interactCloseAction.performed += inputInfo => InteractCloseTriggered = true;
-        interactCloseAction.canceled += inputInfo => InteractCloseTriggered = false;
+        interactCloseAction.performed += inputInfo => InteractTriggered = true;
+        interactCloseAction.canceled += inputInfo => InteractTriggered = false;
 
         //Shared
         activeItemAction.performed += inputInfo => ActiveItemActionTriggered = true;

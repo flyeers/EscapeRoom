@@ -12,13 +12,6 @@ public class Interactor : MonoBehaviour
     [SerializeField] protected PlayerInputHandler playerInputHandler;
     [SerializeField] protected InventoryManager inventoryManager;
 
-    public enum InteractType
-    {
-        Interact,
-        InteractClose
-    }
-    [SerializeField] private InteractType interactType;
-
     [SerializeField] protected float _interactionDistance = 1.5f;
     [SerializeField] protected LayerMask _interactableLayer;
     [SerializeField] protected LayerMask _obstacleLayer;
@@ -45,7 +38,7 @@ public class Interactor : MonoBehaviour
                 _lastHit = hit;
                 HandleInteractionInfo(true);
 
-                if (_canInteract && IsInteractTriggered())
+                if (_canInteract && playerInputHandler.InteractTriggered)
                 {
                     interactableObject.Interact(gameObject);
                     StartCoroutine(Cooldown());
@@ -58,19 +51,6 @@ public class Interactor : MonoBehaviour
             _lastHit = hit;
             HandleInteractionInfo(false);
         }
-    }
-    bool IsInteractTriggered()
-    {
-        switch (interactType)
-        {
-            case InteractType.Interact:
-                return playerInputHandler.InteractTriggered;
-
-            case InteractType.InteractClose:
-                return playerInputHandler.InteractCloseTriggered;
-        }
-
-        return false;
     }
 
     //IMPORTANTE child should implement this function  
@@ -126,7 +106,7 @@ public class Interactor : MonoBehaviour
             //Block movement 
             HandleCanMove(false);
 
-            if (_canInteract && IsInteractTriggered())
+            if (_canInteract && playerInputHandler.InteractTriggered)
             {
                 //Close menu if oppen
                 Destroy(messageUI);

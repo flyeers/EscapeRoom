@@ -1,4 +1,5 @@
-﻿using Unity.Cinemachine;
+﻿using System.Collections;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEngine.UI.Image;
@@ -21,13 +22,20 @@ public class FirstPersonController : Interactor
 
     [SerializeField] private float mouseSensitivity = 0.1f;
     [SerializeField] private float upDownLookRange = 80f;
+    [SerializeField] private float initialMovementCooldown = 0.25f;
    
 
     private Vector3 currentMovement;
     private float verticalRotation;
     private bool canMove = true;
     private float CurrentSpeed => walkSpeed * (playerInputHandler.SprintTriggered ? sprintMultiplier : 1);
+    private bool firtsMove = true;
 
+    private void OnEnable()
+    {
+        if (!firtsMove) StartCoroutine(CooldownCanMove());
+        else firtsMove = false;
+    }
 
     private void Awake()
     {
@@ -115,6 +123,12 @@ public class FirstPersonController : Interactor
         this.canMove = canMove;
     }
 
+    IEnumerator CooldownCanMove()
+    {
+        canMove = false;
+        yield return new WaitForSeconds(initialMovementCooldown);
+        canMove = true;
+    }
 
     /*public void SetCanMove(bool canMove) 
     {

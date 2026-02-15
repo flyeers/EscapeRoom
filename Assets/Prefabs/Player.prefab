@@ -236,10 +236,9 @@ MonoBehaviour:
   movement: Movement
   rotation: Rotation
   sprint: Sprint
-  interact: Interact
   actionMapNameColoseUp: CloseUp
   back: Back
-  interactClose: Interact
+  interact: Interact
   activeItem: ActivateItem
   prevItem: PreviousItem
   nextItem: NextItem
@@ -322,7 +321,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FirstPersonController
   playerInputHandler: {fileID: 1580756165105969009}
   inventoryManager: {fileID: 6291953296493586280}
-  interactType: 0
   _interactionDistance: 3
   _interactableLayer:
     serializedVersion: 2
@@ -339,6 +337,7 @@ MonoBehaviour:
   sprintMultiplier: 2
   mouseSensitivity: 0.1
   upDownLookRange: 80
+  initialMovementCooldown: 0.8
 --- !u!114 &6327559171168229599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -353,7 +352,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CloseUpController
   playerInputHandler: {fileID: 1580756165105969009}
   inventoryManager: {fileID: 6291953296493586280}
-  interactType: 1
   _interactionDistance: 10
   _interactableLayer:
     serializedVersion: 2
