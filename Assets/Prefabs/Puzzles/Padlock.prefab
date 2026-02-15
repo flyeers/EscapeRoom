@@ -48,8 +48,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6447d27d2e0d3db4c998b25123799fff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Padlock
-  combination: 564
-  numbers: 020000000800000007000000
+  actionOnUnlocked: {fileID: 0}
+  combination: 120
+  numbers: 000000000100000008000000
 --- !u!1 &6610197174319259502
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,7 +292,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PadlockClick
   padlock: {fileID: 2389981451324556440}
   positionInPadlock: 1
-  rotationToAdd: {x: 0, y: 36, z: 0}
+  maxPadlockNumber: 9
+  clockwiseRotation: 1
+  axis: 2
 --- !u!65 &6420378718249392115
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -440,7 +443,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PadlockClick
   padlock: {fileID: 2389981451324556440}
   positionInPadlock: 0
-  rotationToAdd: {x: 0, y: 36, z: 0}
+  maxPadlockNumber: 9
+  clockwiseRotation: 1
+  axis: 2
 --- !u!65 &1564660096056133845
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -561,7 +566,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PadlockClick
   padlock: {fileID: 2389981451324556440}
   positionInPadlock: 2
-  rotationToAdd: {x: 0, y: 36, z: 0}
+  maxPadlockNumber: 9
+  clockwiseRotation: 1
+  axis: 2
 --- !u!65 &938272440984707633
 BoxCollider:
   m_ObjectHideFlags: 0

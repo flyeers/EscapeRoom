@@ -67,7 +67,8 @@ MonoBehaviour:
   padlock: {fileID: 3032275755151967375}
   positionInPadlock: 0
   maxPadlockNumber: 3
-  rotationToAdd: {x: 0, y: -90, z: 0}
+  clockwiseRotation: 0
+  axis: 2
   newLayerName: Interactable
 --- !u!1001 &229483030129224868
 PrefabInstance:
@@ -158,7 +159,8 @@ MonoBehaviour:
   padlock: {fileID: 3032275755151967375}
   positionInPadlock: 2
   maxPadlockNumber: 3
-  rotationToAdd: {x: 0, y: -90, z: 0}
+  clockwiseRotation: 0
+  axis: 2
 --- !u!4 &3074218637860966335 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2992246169863955227, guid: f3e84350e2d2e5e479cdbde02694c544, type: 3}
@@ -190,7 +192,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2992246169863955227, guid: f3e84350e2d2e5e479cdbde02694c544, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.705
+      value: -2.17
       objectReference: {fileID: 0}
     - target: {fileID: 2992246169863955227, guid: f3e84350e2d2e5e479cdbde02694c544, type: 3}
       propertyPath: m_LocalRotation.w
@@ -324,7 +326,8 @@ MonoBehaviour:
   padlock: {fileID: 3032275755151967375}
   positionInPadlock: 1
   maxPadlockNumber: 3
-  rotationToAdd: {x: 0, y: -90, z: 0}
+  clockwiseRotation: 0
+  axis: 2
 --- !u!1001 &4499292827831145813
 PrefabInstance:
   m_ObjectHideFlags: 0

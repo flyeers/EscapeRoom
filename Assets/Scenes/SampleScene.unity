@@ -2001,11 +2001,11 @@ MonoBehaviour:
   action: {fileID: 0}
   deactivateAfterAction: 0
   showAlternativeMessage: 1
-  showMessageSO: {fileID: 0}
-  messageText: 
+  showMessageSO: {fileID: 11400000, guid: 5fe7a399f1d44b2408a3facc2e1c2e8d, type: 2}
+  messageText: No lightbulb to place
   spawnPoint: {fileID: 954290193}
   removePickUp: 0
-  replaceableItem: 0
+  replaceableItem: 1
 --- !u!114 &756552482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2283,7 +2283,8 @@ MonoBehaviour:
   padlock: {fileID: 180913398}
   positionInPadlock: 0
   maxPadlockNumber: 0
-  rotationToAdd: {x: 0, y: 36, z: 0}
+  clockwiseRotation: 1
+  axis: 0
 --- !u!114 &820927573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3720,6 +3721,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6587738709646353988, guid: 6801065dfb826594e94ab9677263f07d, type: 3}
+      propertyPath: replaceableItem
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6587738709646353988, guid: 6801065dfb826594e94ab9677263f07d, type: 3}
       propertyPath: replacezableItem
       value: 1
       objectReference: {fileID: 0}
@@ -4361,7 +4366,8 @@ MonoBehaviour:
   padlock: {fileID: 180913398}
   positionInPadlock: 1
   maxPadlockNumber: 0
-  rotationToAdd: {x: 0, y: 36, z: 0}
+  clockwiseRotation: 1
+  axis: 0
 --- !u!114 &1855415024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5293,10 +5299,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1049086447049896971, guid: c6c145db9bfe174488eb94a0385db78c, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -2.17
-      objectReference: {fileID: 0}
     - target: {fileID: 4573416933457038165, guid: c6c145db9bfe174488eb94a0385db78c, type: 3}
       propertyPath: m_Name
       value: StatuesPadlock
@@ -6029,33 +6031,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2389981451324556440, guid: ba588b0f0384ec14d83e0a7fff27a5a6, type: 3}
-      propertyPath: combination
-      value: 120
-      objectReference: {fileID: 0}
-    - target: {fileID: 2389981451324556440, guid: ba588b0f0384ec14d83e0a7fff27a5a6, type: 3}
-      propertyPath: objectToMove
-      value: 
-      objectReference: {fileID: 832266807}
-    - target: {fileID: 2389981451324556440, guid: ba588b0f0384ec14d83e0a7fff27a5a6, type: 3}
-      propertyPath: movementRange.z
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2389981451324556440, guid: ba588b0f0384ec14d83e0a7fff27a5a6, type: 3}
       propertyPath: actionOnUnlocked
       value: 
       objectReference: {fileID: 93365901}
-    - target: {fileID: 2389981451324556440, guid: ba588b0f0384ec14d83e0a7fff27a5a6, type: 3}
-      propertyPath: 'numbers.Array.data[0]'
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2389981451324556440, guid: ba588b0f0384ec14d83e0a7fff27a5a6, type: 3}
-      propertyPath: 'numbers.Array.data[1]'
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2389981451324556440, guid: ba588b0f0384ec14d83e0a7fff27a5a6, type: 3}
-      propertyPath: 'numbers.Array.data[2]'
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 3094437650892859506, guid: ba588b0f0384ec14d83e0a7fff27a5a6, type: 3}
       propertyPath: m_Name
       value: Padlock
