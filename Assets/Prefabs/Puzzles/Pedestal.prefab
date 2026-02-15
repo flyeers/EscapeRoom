@@ -154,6 +154,7 @@ MonoBehaviour:
   messageText: No item to place
   spawnPoint: {fileID: 731733209021843964}
   removePickUp: 1
+  replaceableItem: 0
 --- !u!1 &8786871457699972015
 GameObject:
   m_ObjectHideFlags: 0

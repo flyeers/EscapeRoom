@@ -433,7 +433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KeypadClick
   keypad: {fileID: 4868077570321100731}
-  key: 1
+  key: 49
 --- !u!114 &8783563991247808577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -580,7 +580,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KeypadClick
   keypad: {fileID: 4868077570321100731}
-  key: 9
+  key: 57
 --- !u!114 &8374054807118392772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -817,7 +817,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KeypadClick
   keypad: {fileID: 4868077570321100731}
-  key: 8
+  key: 56
 --- !u!114 &2267804798934097311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -964,7 +964,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KeypadClick
   keypad: {fileID: 4868077570321100731}
-  key: 7
+  key: 55
 --- !u!114 &4909882262188699473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1248,7 +1248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KeypadClick
   keypad: {fileID: 4868077570321100731}
-  key: 3
+  key: 51
 --- !u!114 &5952975632453375426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1485,7 +1485,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KeypadClick
   keypad: {fileID: 4868077570321100731}
-  key: 0
+  key: 48
 --- !u!114 &4561027569832987114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1722,7 +1722,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KeypadClick
   keypad: {fileID: 4868077570321100731}
-  key: 6
+  key: 54
 --- !u!114 &1804434502096880746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2139,7 +2139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KeypadClick
   keypad: {fileID: 4868077570321100731}
-  key: 4
+  key: 52
 --- !u!114 &4152364307675349373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2605,7 +2605,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KeypadClick
   keypad: {fileID: 4868077570321100731}
-  key: 2
+  key: 50
 --- !u!114 &5252987626001974268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2842,7 +2842,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KeypadClick
   keypad: {fileID: 4868077570321100731}
-  key: 5
+  key: 53
 --- !u!114 &4812845585053920801
 MonoBehaviour:
   m_ObjectHideFlags: 0

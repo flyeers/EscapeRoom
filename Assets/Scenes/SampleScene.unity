@@ -2005,7 +2005,7 @@ MonoBehaviour:
   messageText: 
   spawnPoint: {fileID: 954290193}
   removePickUp: 0
-  replacezableItem: 1
+  replaceableItem: 0
 --- !u!114 &756552482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2036,15 +2036,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f3033bf9fdb8974f978ae3f7bcc474f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LightsSystem
-  lightBulb: {fileID: 967197277}
+  lightbulb: {fileID: 967197277}
   bulbParent: {fileID: 954290193}
-  LightBulbs:
-  - itemSO: {fileID: 11400000, guid: f395761675ae7094da0797ba8edb0bcb, type: 2}
+  Lightbulbs:
+  - itemSO: {fileID: 11400000, guid: 108ed1421fb98634ab695fc956e9287c, type: 2}
     tagName: 
     lihtColor: {r: 1, g: 0, b: 0, a: 0}
-  - itemSO: {fileID: 11400000, guid: f0a65ee478d8225449c9914dfbb5d087, type: 2}
-    tagName: 
-    lihtColor: {r: 0, g: 0.03673029, b: 1, a: 0}
 --- !u!1 &763278824
 GameObject:
   m_ObjectHideFlags: 0
@@ -4882,7 +4879,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LightsSystemAction
   lightsSystem: {fileID: 756552483}
-  obj: {fileID: 756552474}
+  lamp: {fileID: 756552474}
+  bulbParent: {fileID: 954290193}
 --- !u!1 &2029424350
 GameObject:
   m_ObjectHideFlags: 0

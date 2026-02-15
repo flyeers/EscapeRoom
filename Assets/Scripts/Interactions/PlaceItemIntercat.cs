@@ -7,33 +7,35 @@ public class PlaceItemIntercat : NeedItemInteract
     [Header("Place item params")]
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private bool removePickUp = true;
-    [SerializeField] private bool replacezableItem = false;
+    [SerializeField] private bool replaceableItem = false;
 
     protected override void UseItem(GameObject interactor) 
     {
-        if (deactivateAfterAction && !replacezableItem)//deactivate place on game object
+        if (deactivateAfterAction && !replaceableItem)//deactivate place on game object
         {
             gameObject.layer = LayerMask.NameToLayer("Default");
         }
 
-        if (spawnPoint.childCount > 0) //An object was allready placed
+        //An object was allready placed
+        if (spawnPoint.childCount > 0) 
         {
             
-            ///////////not replazable but item is placed
-            if (!replacezableItem) //re add item
-            {
-                inventory.AddItem(itemSO);
-                return;
-            } 
-            ////////////
+            ////not replazable but item is placed - exit
+            if (!replaceableItem) return;
 
+            if (itemSO.consumable) inventory.RemoveItem();//remove from inventory
             if (spawnPoint.GetChild(0).gameObject.TryGetComponent<PickUpInteract>(out PickUpInteract pickUp)) 
             { 
                 inventory.AddItem(pickUp.itemSO);
                 Destroy(spawnPoint.GetChild(0).gameObject);
             }
         }
-        
+        else 
+        {
+            if (itemSO.consumable) inventory.RemoveItem();//remove from inventory
+        }
+
+
         GameObject obj = Instantiate(itemSO.ItemPrefab, spawnPoint.position, spawnPoint.rotation);
         obj.transform.SetParent(spawnPoint);
         obj.layer = gameObject.layer; //set same layer as the gameobject where is been placeds

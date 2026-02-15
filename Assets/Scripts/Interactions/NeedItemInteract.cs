@@ -25,7 +25,6 @@ public class NeedItemInteract: MonoBehaviour, IInteractable
             itemSO = inventory.GetActiveItem();
             if (itemSO && itemsSO.Count != 0 && itemsSO.Contains(itemSO)) 
             {
-                if(itemSO.consumable) inventory.RemoveItem(); //if consumable remove from inventory
                 UseItem(interactor);
             }
             else 
@@ -38,6 +37,8 @@ public class NeedItemInteract: MonoBehaviour, IInteractable
 
     protected virtual void UseItem(GameObject interactor) 
     {
+        if (itemSO.consumable) inventory.RemoveItem(); //if consumable remove from inventory
+
         if (action) action.ExecuteAction(null);
         Debug.Log("OPEEEN");
 
