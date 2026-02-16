@@ -17,6 +17,7 @@ public class Interactor : MonoBehaviour
     [SerializeField] protected LayerMask _obstacleLayer;
     [SerializeField] protected float cooldown = 0.5f;
 
+    protected bool _enabled = true;
     protected bool _canInteract = true;
     protected Outline _otlineLastSeen;
     protected RaycastHit _lastHit;
@@ -28,7 +29,7 @@ public class Interactor : MonoBehaviour
 
     protected void HandleInteraction() 
     {
-
+        if (!_enabled) return; 
         if (CheckMessageActive()) return;
 
         if (CheckArea(out RaycastHit hit) && ((1 << hit.collider.gameObject.layer) & _obstacleLayer) == 0) //hit + no obstacle
@@ -69,13 +70,13 @@ public class Interactor : MonoBehaviour
 
             //set outline
             Outline _aux = _otlineLastSeen;
-            _otlineLastSeen = _lastHit.transform.GetComponent<Outline>() ??
-                                _lastHit.transform.GetComponentInParent<Outline>() ??
+            _otlineLastSeen = _lastHit.transform.GetComponent<Outline>() 
+                                ??_lastHit.transform.GetComponentInParent<Outline>() ??
                                 _lastHit.transform.GetComponentInChildren<Outline>();
             if (_otlineLastSeen)
             {
                 _otlineLastSeen.enabled = true;
-                if (_aux && _aux.transform.root != _otlineLastSeen.transform.root)
+                if (_aux && _aux.transform.gameObject != _otlineLastSeen.transform.gameObject)
                 {
                     _aux.enabled = false;
                 }

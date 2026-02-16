@@ -19,12 +19,15 @@ public class CloseUpController : Interactor
 
     private void OnEnable()
     {
+        _enabled = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
 
     void OnDisable()
     {
+        _enabled = false;
+        HandleInteractionInfo(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
