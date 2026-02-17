@@ -13,6 +13,15 @@ public class InventoryManager : MonoBehaviour
     private int activeItemIndex = -1;
     private GameObject activeItem;
 
+    private void Awake()
+    {
+        if(inventory.Count == 0 || !inventoryUI) return;
+        foreach(var item in inventory) 
+        {
+            inventoryUI.AddItemUI(item.ItemSprite);
+        }
+    }
+
     public bool AddItem(ItemSO itemSO)
     {
         if(inventory.Count == maxInventoryCapacity) return false; //inventory is full

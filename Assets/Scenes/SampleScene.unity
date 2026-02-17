@@ -4980,6 +4980,14 @@ PrefabInstance:
       propertyPath: inventoryUI
       value: 
       objectReference: {fileID: 147130069}
+    - target: {fileID: 6291953296493586280, guid: 90ef29d2b1bf75d4c9d0270f67fbe10c, type: 3}
+      propertyPath: inventory.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6291953296493586280, guid: 90ef29d2b1bf75d4c9d0270f67fbe10c, type: 3}
+      propertyPath: 'inventory.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 795700d5f58793c47bcbde55181260d4, type: 2}
     - target: {fileID: 8801920807905284414, guid: 90ef29d2b1bf75d4c9d0270f67fbe10c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
