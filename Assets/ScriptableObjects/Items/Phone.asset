@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   Name: Phone
   consumable: 0
+  showMessage: 1
+  message: '"Testing message shown in UI from item"'
   ItemSprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
   ItemPrefab: {fileID: 4103765440457556713, guid: 190d204881f27ef4ca652a1e69b664b0, type: 3}

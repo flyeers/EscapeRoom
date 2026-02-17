@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,8 +7,10 @@ public class InventoryUI : MonoBehaviour
 {
     [SerializeField] private Image[] itemsImages;
     [SerializeField] private Image[] backgroundImages;
-    [SerializeField] private float selectedAlpha = 0.9f;
-    [SerializeField] private float notSelectedAlpha = 0.3f;
+    [SerializeField] private Color selectedColor;
+    [SerializeField] private Color notSelectedColor;
+    [SerializeField] private Image messageImage;
+    [SerializeField] private Color notifyColor;
 
 
     private int itemCount = -1;
@@ -50,9 +53,29 @@ public class InventoryUI : MonoBehaviour
     { 
         if(index >= backgroundImages.Length) return;
         
-        Color c = backgroundImages[index].color;
-        c.a = selected ? selectedAlpha: notSelectedAlpha;
-        backgroundImages[index].color = c;
+        //Background active / not active item
+        backgroundImages[index].color = selected? selectedColor : notSelectedColor;
+    }
 
+    public void SetMessage(string messageText, bool show) 
+    {
+        if (!messageImage) return;
+
+        if (!show || string.IsNullOrWhiteSpace(messageText))
+        {
+            messageImage.gameObject.SetActive(false);
+        }
+        else
+        {
+            messageImage.gameObject.SetActive(true);
+            TextMeshProUGUI tmpText = messageImage.GetComponentInChildren<TextMeshProUGUI>();
+            if (tmpText != null)
+                tmpText.text = messageText;
+        }
+    }
+
+    public void SetBackgroundNotify(int index) 
+    {
+        backgroundImages[index].color = notifyColor;
     }
 }

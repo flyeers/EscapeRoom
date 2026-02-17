@@ -9,6 +9,8 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private Transform activeItemPos;
 
     [SerializeField] private InventoryUI inventoryUI;
+    [Tooltip("If player starts with phone - not prepared if its picked up")]
+    [SerializeField] private string phoneInitialMessage;
 
     private int activeItemIndex = -1;
     private GameObject activeItem;
@@ -19,6 +21,7 @@ public class InventoryManager : MonoBehaviour
         foreach(var item in inventory) 
         {
             inventoryUI.AddItemUI(item.ItemSprite);
+            if (item.name == "Phone") item.message = phoneInitialMessage;
         }
     }
 
@@ -56,6 +59,8 @@ public class InventoryManager : MonoBehaviour
         if(activeItemIndex != -1) //remove item if active
         {
             DestroyActiveItem();
+            if (inventoryUI) inventoryUI.SetMessage(null, false);
+
         }
         else // first set item to active  
         {
@@ -99,6 +104,7 @@ public class InventoryManager : MonoBehaviour
 
         //active UI
         if (inventoryUI) inventoryUI.SetBackgroudSelected(activeItemIndex, true);
+        if (inventoryUI) inventoryUI.SetMessage(newItemSO.message, newItemSO.showMessage);
     }
     private void DestroyActiveItem() 
     {
@@ -116,6 +122,21 @@ public class InventoryManager : MonoBehaviour
         return inventory[activeItemIndex];
     }
 
+    public bool CheckForItem(ItemSO item)
+    {
+        return inventory.Contains(item);
+    }
+
+    public void RefreshMessageUI(ItemSO itemSO) 
+    {
+        if (!inventory.Contains(itemSO) || inventory.IndexOf(itemSO) != activeItemIndex) return; //item exist and active
+        if (inventoryUI) inventoryUI.SetMessage(itemSO.message, itemSO.showMessage);
+    }
+    public void NotifyMessageUI(ItemSO itemSO) 
+    {
+        if (!inventory.Contains(itemSO)) return;
+        if (inventoryUI) inventoryUI.SetBackgroundNotify(inventory.IndexOf(itemSO));
+    }
 
     //OLD CODE 
     /*public bool RemoveItem(ItemSO itemSO)
