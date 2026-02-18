@@ -3,21 +3,27 @@ using UnityEngine;
 
 public class MoveInteract : MonoBehaviour, IInteractable
 {
-    [SerializeField] private float _movementRange = 2f;
+    [SerializeField] private Vector3 _movementOffset = Vector3.zero;
 
     private bool _isClosed = true;
+    private Vector3 _initialPosition;
+
+    private void Awake()
+    {
+        _initialPosition = transform.position;
+    }
+
     public void Interact(GameObject interactor)
     {
         if (_isClosed)
         {
-            transform.Translate(Vector3.right * _movementRange); // Mueve en X
+            transform.position = _initialPosition + _movementOffset;
             _isClosed = false;
         }
         else
         {
-            transform.Translate(Vector3.right * -_movementRange); // Mueve en X
+            transform.position = _initialPosition;
             _isClosed = true;
         }
-
     }
 }

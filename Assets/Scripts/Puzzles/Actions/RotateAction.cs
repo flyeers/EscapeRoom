@@ -9,6 +9,8 @@ public class RotateAction : Action
     [SerializeField] private GameObject objctToRotate;
     [SerializeField] private float rotationSpeed = 2f;
     [SerializeField] private Vector3 rotationToAdd;
+    [SerializeField] private bool deactivateAfterAction = false;
+
 
     private bool isActivated = true;
     private bool isMoving = false;
@@ -58,5 +60,9 @@ public class RotateAction : Action
         isMoving = false;
 
         if (nextAction) nextAction.ExecuteAction(null);
+        if (deactivateAfterAction)
+        {
+            gameObject.layer = LayerMask.NameToLayer("Default");
+        }
     }
 }

@@ -321,7 +321,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FirstPersonController
   playerInputHandler: {fileID: 1580756165105969009}
   inventoryManager: {fileID: 6291953296493586280}
-  _interactionDistance: 3
+  _interactionDistance: 2
   _interactableLayer:
     serializedVersion: 2
     m_Bits: 64

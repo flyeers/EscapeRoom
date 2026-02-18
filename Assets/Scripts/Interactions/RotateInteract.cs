@@ -9,13 +9,21 @@ public class RotateInteract : MonoBehaviour, IInteractable
 
     [SerializeField] private GameObject objctToRotate;
     [SerializeField] private float rotationSpeed = 2f;
-    [SerializeField] private float startAlngel = 0f;  
-    [SerializeField] private float aimAngle = -45f;
+    [SerializeField] private Vector3 rotationToAdd;
 
-    private bool isActivated = true;
+
+    private bool isActivated = false;
     private bool isMoving = false;
 
 
+    private Quaternion initialRotation;
+    private Quaternion activatedRotation;
+
+    private void Awake()
+    {
+        initialRotation = objctToRotate.transform.localRotation;
+        activatedRotation = initialRotation * Quaternion.Euler(rotationToAdd);
+    }
 
     public void Interact(GameObject interactor)
     {
@@ -29,17 +37,16 @@ public class RotateInteract : MonoBehaviour, IInteractable
     {
         isMoving = true;
 
-        float targetAngle = isActivated ? aimAngle : startAlngel;
-
         Quaternion startRotation = objctToRotate.transform.localRotation;
-        Quaternion targetRotation = Quaternion.Euler(targetAngle, 0, 0);
+        Quaternion targetRotation = isActivated ? initialRotation : activatedRotation;
 
         float time = 0;
 
-        while (time < 1)
+        while (time < 1f)
         {
             time += Time.deltaTime * rotationSpeed;
-            objctToRotate.transform.localRotation = Quaternion.Lerp(startRotation, targetRotation, time);
+            objctToRotate.transform.localRotation =
+                Quaternion.Slerp(startRotation, targetRotation, time);
             yield return null;
         }
 
