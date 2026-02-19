@@ -505,7 +505,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84c4b10a4e5bd00429b6f8a298dc922a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OpenSceneAction
-  sceneIndex: -1
+  sceneIndex: 2
 --- !u!1001 &122304021
 PrefabInstance:
   m_ObjectHideFlags: 0
