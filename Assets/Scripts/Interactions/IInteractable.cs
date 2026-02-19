@@ -10,5 +10,13 @@ namespace Assets.Scripts.Interactions
     internal interface IInteractable
     {
         void Interact(GameObject interactor);
+
+        void IteractionPlaySound(GameObject interactable) 
+        {
+            if (interactable.GetComponent<AudioComponent>())
+            {
+                interactable.GetComponent<AudioComponent>().Play();
+            }
+        }
     }
 }

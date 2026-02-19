@@ -401,6 +401,8 @@ MonoBehaviour:
   activeItemPos: {fileID: 3521169302764777856}
   inventoryUI: {fileID: 0}
   phoneInitialMessage: 
+  NotifyClip: {fileID: 0}
+  ItemClip: {fileID: 0}
 --- !u!1 &3452794886703103651
 GameObject:
   m_ObjectHideFlags: 0

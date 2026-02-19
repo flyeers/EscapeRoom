@@ -42,6 +42,7 @@ public class Interactor : MonoBehaviour
                 if (_canInteract && playerInputHandler.InteractTriggered)
                 {
                     interactableObject.Interact(gameObject);
+                    interactableObject.IteractionPlaySound(hit.transform.gameObject);
                     StartCoroutine(Cooldown());
                     //Debug.Log("interactableObject reached");
                 }

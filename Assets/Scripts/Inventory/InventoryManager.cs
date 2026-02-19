@@ -12,8 +12,14 @@ public class InventoryManager : MonoBehaviour
     [Tooltip("If player starts with phone - not prepared if its picked up")]
     [SerializeField] private string phoneInitialMessage;
 
+    [Header("Sound")]
+    [SerializeField] private AudioClip NotifyClip;
+    //[SerializeField] private AudioClip PickUpClip;
+    [SerializeField] private AudioClip ItemClip;
+
     private int activeItemIndex = -1;
     private GameObject activeItem;
+    private AudioComponent audioComponent;
 
     private void Awake()
     {
@@ -23,6 +29,8 @@ public class InventoryManager : MonoBehaviour
             inventoryUI.AddItemUI(item.ItemSprite);
             if (item.name == "Phone") item.message = phoneInitialMessage;
         }
+
+        audioComponent = gameObject.GetComponent<AudioComponent>();
     }
 
     public bool AddItem(ItemSO itemSO)
@@ -105,6 +113,7 @@ public class InventoryManager : MonoBehaviour
         //active UI
         if (inventoryUI) inventoryUI.SetBackgroudSelected(activeItemIndex, true);
         if (inventoryUI) inventoryUI.SetMessage(newItemSO.message, newItemSO.showMessage);
+        if (audioComponent) GetComponent<AudioComponent>().PlaySound(ItemClip);
     }
     private void DestroyActiveItem() 
     {
@@ -136,6 +145,8 @@ public class InventoryManager : MonoBehaviour
     {
         if (!inventory.Contains(itemSO)) return;
         if (inventoryUI) inventoryUI.SetBackgroundNotify(inventory.IndexOf(itemSO));
+        
+        if (audioComponent) GetComponent<AudioComponent>().PlaySound(NotifyClip);
     }
 
     //OLD CODE 
