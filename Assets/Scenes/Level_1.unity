@@ -1313,6 +1313,7 @@ MonoBehaviour:
   objctToRotate: {fileID: 218322047}
   rotationSpeed: 2
   rotationToAdd: {x: 0, y: 180, z: 0}
+  deactivateAfterAction: 0
 --- !u!114 &376515447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1861,7 +1862,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TriggerExecuteAcition
   action: {fileID: 647934187}
-  deactivateAfterTrigger: 0
+  deactivateAfterTrigger: 1
 --- !u!65 &647934189
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2935,7 +2936,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4233681782828317152, guid: c89c91de82607964b8f7b7646790a66e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.963
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4233681782828317152, guid: c89c91de82607964b8f7b7646790a66e, type: 3}
       propertyPath: m_LocalPosition.z

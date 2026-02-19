@@ -16,5 +16,5 @@ MonoBehaviour:
   consumable: 0
   showMessage: 0
   message: 
-  ItemSprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  ItemSprite: {fileID: 21300000, guid: 356bc4877fbce6945b175ee391435e0a, type: 3}
   ItemPrefab: {fileID: 5895960129458346973, guid: 0d8b2c739f547304fb6103ed053f0c8c, type: 3}
