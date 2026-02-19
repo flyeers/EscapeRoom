@@ -16,7 +16,10 @@ public class ReceiveMessageAction : Action
 
     public override void ExecuteAction(GameObject obejct)
     {
-        if(obejct.TryGetComponent<InventoryManager>(out inventory)) //player
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (!player) return;
+
+        if (player.TryGetComponent<InventoryManager>(out inventory))
         {
             if (inventory.CheckForItem(itemToUpdateMessage)) 
             {
