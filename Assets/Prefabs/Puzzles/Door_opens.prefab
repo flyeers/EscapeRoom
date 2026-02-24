@@ -265,6 +265,7 @@ MonoBehaviour:
   rotationSpeed: 1
   rotationToAdd: {x: 0, y: -120, z: 0}
   deactivateAfterAction: 1
+  setFirstPersonMode: 1
 --- !u!114 &4068453689954572527
 MonoBehaviour:
   m_ObjectHideFlags: 0

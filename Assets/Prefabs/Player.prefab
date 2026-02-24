@@ -366,7 +366,6 @@ MonoBehaviour:
   characterController: {fileID: 6187895261322395717}
   firstPersonController: {fileID: 4736196709564627320}
   mainCamera: {fileID: 8036528772203318051}
-  mainCameraVirtual: {fileID: 5934984835435599833}
   controllerManager: {fileID: 6043529825811447138}
 --- !u!114 &6043529825811447138
 MonoBehaviour:
@@ -703,7 +702,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7175963914037289691
 Transform:
   m_ObjectHideFlags: 0

@@ -14,7 +14,6 @@ public class CloseUpController : Interactor
     [SerializeField] private CharacterController characterController;
     [SerializeField] private FirstPersonController firstPersonController;
     [SerializeField] private Camera mainCamera;
-    [SerializeField] private CinemachineCamera mainCameraVirtual;
     [SerializeField] private ControllerManager controllerManager;
 
     private void OnEnable()
@@ -46,7 +45,7 @@ public class CloseUpController : Interactor
         //Exit CloseUp mode
         if (playerInputHandler.BackTriggered) 
         {
-            controllerManager.ChangeControllers(true, mainCameraVirtual);
+            controllerManager.ChangeControllers(true, null);
             return;
         }
 

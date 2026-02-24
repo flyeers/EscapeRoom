@@ -10,6 +10,7 @@ public class RotateAction : Action
     [SerializeField] private float rotationSpeed = 2f;
     [SerializeField] private Vector3 rotationToAdd;
     [SerializeField] private bool deactivateAfterAction = false;
+    [SerializeField] private bool setFirstPersonMode = false;
 
 
     private bool isActivated = true;
@@ -24,6 +25,23 @@ public class RotateAction : Action
 
     public override void ExecuteAction(GameObject obejct)
     {
+        if (deactivateAfterAction)
+        {
+            gameObject.layer = LayerMask.NameToLayer("Default");
+        }
+        if (setFirstPersonMode)
+        {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (player && player.TryGetComponent<ControllerManager>(out ControllerManager controllerManager))
+            {
+                if(!controllerManager.GetIsFirstPersonController()) 
+                {
+                    controllerManager.ChangeControllers(true, null);
+                }
+            }
+        }
+
+        //ROTATION
         if (!isMoving)
         {
             StartCoroutine(Move());
@@ -60,9 +78,5 @@ public class RotateAction : Action
         isMoving = false;
 
         if (nextAction) nextAction.ExecuteAction(null);
-        if (deactivateAfterAction)
-        {
-            gameObject.layer = LayerMask.NameToLayer("Default");
-        }
     }
 }

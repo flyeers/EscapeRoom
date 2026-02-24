@@ -33,6 +33,7 @@ public class ControllerManager : MonoBehaviour
     public void ChangeControllers(bool _firstPersonController, CinemachineCamera newCamera) 
     {
         isFirstPersonController = _firstPersonController;
+        if (!newCamera) newCamera = mainCamera; //if not newCamera we assume player's camera
 
         currentCamera.enabled = false;
         newCamera.enabled = true;
@@ -41,4 +42,8 @@ public class ControllerManager : MonoBehaviour
         SetControllers();
     }
 
+    public bool GetIsFirstPersonController() 
+    { 
+        return isFirstPersonController;
+    }
 }
