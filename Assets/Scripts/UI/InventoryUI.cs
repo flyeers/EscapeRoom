@@ -7,6 +7,7 @@ public class InventoryUI : MonoBehaviour
 {
     [SerializeField] private Image[] itemsImages;
     [SerializeField] private Image[] backgroundImages;
+    [SerializeField] private Image backgroundPhone;
     [SerializeField] private Color selectedColor;
     [SerializeField] private Color notSelectedColor;
     [SerializeField] private Image messageImage;
@@ -50,8 +51,13 @@ public class InventoryUI : MonoBehaviour
     }
 
     public void SetBackgroudSelected(int index, bool selected) 
-    { 
-        if(index >= backgroundImages.Length) return;
+    {
+        if (index == -2) 
+        { 
+            SetBackgroudPnone(selected); 
+            return;        
+        }
+        if (index >= backgroundImages.Length) return;
         
         //Background active / not active item
         backgroundImages[index].color = selected? selectedColor : notSelectedColor;
@@ -78,4 +84,16 @@ public class InventoryUI : MonoBehaviour
     {
         backgroundImages[index].color = notifyColor;
     }
+
+    //PHONE
+    public void SetBackgroudPnone(bool selected)
+    {
+        //Background active / not active item
+        backgroundPhone.color = selected ? selectedColor : notSelectedColor;
+    }
+    public void SetBackgroundNotifyPhone()
+    {
+        backgroundPhone.color = notifyColor;
+    }
+
 }

@@ -68,6 +68,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ActivatePhone",
+                    "type": "Button",
+                    "id": "bd826605-6442-4bb1-9bcc-2673a6d7ebdb",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -191,6 +200,17 @@
                     "action": "NextItem",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dd03aaec-5bd8-4e2e-bf0d-4a94474c24ca",
+                    "path": "<Keyboard>/ctrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActivatePhone",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -238,6 +258,15 @@
                     "name": "NextItem",
                     "type": "Button",
                     "id": "f3dd9b0a-be9a-4b1e-bccf-630e571acc13",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ActivatePhone",
+                    "type": "Button",
+                    "id": "b4776d34-9832-47ce-8ee6-d35466f8f5f8",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -297,6 +326,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "NextItem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2aa0e771-5a37-4c56-9be6-0d34403f958e",
+                    "path": "<Keyboard>/ctrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActivatePhone",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

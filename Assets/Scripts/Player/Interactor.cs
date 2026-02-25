@@ -152,6 +152,11 @@ public class Interactor : MonoBehaviour
                 inventoryManager.ActivateItem(false);
                 StartCoroutine(Cooldown());
             }
+            else if (playerInputHandler.ActivePhoneActionTriggered)
+            {
+                inventoryManager.SetPhoneActive();
+                StartCoroutine(Cooldown());
+            }
         }
     }
 

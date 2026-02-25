@@ -242,6 +242,7 @@ MonoBehaviour:
   activeItem: ActivateItem
   prevItem: PreviousItem
   nextItem: NextItem
+  activePhone: ActivatePhone
 --- !u!1 &1948590796148203252
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,11 +397,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 421ed46f8fac12a4ea79535426d1c9e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryManager
-  inventory:
-  - {fileID: 11400000, guid: 795700d5f58793c47bcbde55181260d4, type: 2}
+  inventory: []
   maxInventoryCapacity: 5
   activeItemPos: {fileID: 3521169302764777856}
   inventoryUI: {fileID: 0}
+  phoneItem: {fileID: 11400000, guid: 795700d5f58793c47bcbde55181260d4, type: 2}
   phoneInitialMessage: 
   NotifyClip: {fileID: 8300000, guid: a1d9285447504d54daf385ad278cc65d, type: 3}
   ItemClip: {fileID: 8300000, guid: 03eb8473079426b4cac43667ec03d174, type: 3}

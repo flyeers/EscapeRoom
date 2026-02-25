@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
+    [Header("Inventory")]
     [SerializeField] private List<ItemSO> inventory = new List<ItemSO>();
     [SerializeField] private int maxInventoryCapacity = 5;
     [SerializeField] private Transform activeItemPos;
 
     [SerializeField] private InventoryUI inventoryUI;
-    [Tooltip("If player starts with phone - not prepared if its picked up")]
+
+    [Header("Phone")]
+    [SerializeField] private ItemSO phoneItem;
     [SerializeField] private string phoneInitialMessage;
 
     [Header("Sound")]
@@ -17,20 +20,20 @@ public class InventoryManager : MonoBehaviour
     //[SerializeField] private AudioClip PickUpClip;
     [SerializeField] private AudioClip ItemClip;
 
-    private int activeItemIndex = -1;
+    private int activeItemIndex = -1; // -2 == phone , -1 == empty 
     private GameObject activeItem;
     private AudioComponent audioComponent;
 
     private void Awake()
     {
-        if(inventory.Count == 0 || !inventoryUI) return;
+        audioComponent = gameObject.GetComponent<AudioComponent>();
+        if (phoneItem) phoneItem.message = phoneInitialMessage;
+
+        if (inventory.Count == 0 || !inventoryUI) return;
         foreach(var item in inventory) 
         {
             inventoryUI.AddItemUI(item.ItemSprite);
-            if (item.name == "Phone") item.message = phoneInitialMessage;
         }
-
-        audioComponent = gameObject.GetComponent<AudioComponent>();
     }
 
     public bool AddItem(ItemSO itemSO)
@@ -54,7 +57,7 @@ public class InventoryManager : MonoBehaviour
     //Remove active item
     public bool RemoveItem() 
     {
-        if (activeItemIndex == -1) return false;
+        if (activeItemIndex <= -1) return false;
         if (inventoryUI) inventoryUI.RemoveItemUI(activeItemIndex);
         inventory.RemoveAt(activeItemIndex);
         DestroyActiveItem();
@@ -64,22 +67,21 @@ public class InventoryManager : MonoBehaviour
 
     public void SetItemActive() 
     { 
-        if(activeItemIndex != -1) //remove item if active
+        if(activeItemIndex > -1) //remove item if active
         {
             DestroyActiveItem();
             if (inventoryUI) inventoryUI.SetMessage(null, false);
-
         }
-        else // first set item to active  
+        else // first item set to active  
         {
             if (inventory.Count == 0) return; //inventory is empty
+
+            if (activeItemIndex == -2) DestroyActiveItem(); //remove phone 
 
             activeItemIndex = 0;
             InstantiateActiveItem();
         }
     }
-
-
     public void ActivateItem(bool setPrevious) 
     {
         if (inventory.Count == 0) return;
@@ -103,6 +105,31 @@ public class InventoryManager : MonoBehaviour
         }
 
     }
+
+    ///PHONE
+    public void SetPhoneActive() 
+    {
+        if (activeItemIndex == -2) // was phone allready -> destroy 
+        { 
+            DestroyActiveItem();
+            if (inventoryUI) inventoryUI.SetMessage(null, false);
+            return;
+        }
+        
+        if (activeItemIndex != -1) //an objet is active
+        {
+            DestroyActiveItem();
+        }
+        activeItem = Instantiate(phoneItem.ItemPrefab, activeItemPos.position, activeItemPos.rotation);
+        activeItem.transform.SetParent(activeItemPos);
+        activeItemIndex = -2;
+
+        //active UI
+        if (inventoryUI) inventoryUI.SetBackgroudPnone(true);
+        if (inventoryUI) inventoryUI.SetMessage(phoneItem.message, phoneItem.showMessage);
+        if (audioComponent) GetComponent<AudioComponent>().PlaySound(ItemClip);
+    }
+  
 
     private void InstantiateActiveItem() 
     {
@@ -133,35 +160,30 @@ public class InventoryManager : MonoBehaviour
 
     public bool CheckForItem(ItemSO item)
     {
-        return inventory.Contains(item);
+        return inventory.Contains(item) || item == phoneItem;
     }
 
     public void RefreshMessageUI(ItemSO itemSO) 
     {
-        if (!inventory.Contains(itemSO) || inventory.IndexOf(itemSO) != activeItemIndex) return; //item exist and active
-        if (inventoryUI) inventoryUI.SetMessage(itemSO.message, itemSO.showMessage);
+        if ((inventory.Contains(itemSO) && inventory.IndexOf(itemSO) != activeItemIndex)
+            || (itemSO == phoneItem && activeItemIndex == -2)) 
+        { 
+            if (inventoryUI) inventoryUI.SetMessage(itemSO.message, itemSO.showMessage);
+        }
     }
     public void NotifyMessageUI(ItemSO itemSO) 
     {
-        if (!inventory.Contains(itemSO)) return;
-        if (inventoryUI) inventoryUI.SetBackgroundNotify(inventory.IndexOf(itemSO));
-        
-        if (audioComponent) GetComponent<AudioComponent>().PlaySound(NotifyClip);
-    }
+        if (inventory.Contains(itemSO)) 
+        { 
+            if (inventoryUI) inventoryUI.SetBackgroundNotify(inventory.IndexOf(itemSO));
+            if (audioComponent) GetComponent<AudioComponent>().PlaySound(NotifyClip);
+        }
+        else if (itemSO == phoneItem) 
+        {
+            if (inventoryUI) inventoryUI.SetBackgroundNotifyPhone();
+            if (audioComponent) GetComponent<AudioComponent>().PlaySound(NotifyClip);
+        }
 
-    //OLD CODE 
-    /*public bool RemoveItem(ItemSO itemSO)
-    {
-        if (!inventory.Contains(itemSO)) return false; //if existed in the inventory
-
-        if (inventoryUI) inventoryUI.RemoveItemUI(inventory.IndexOf(itemSO));
-        inventory.Remove(itemSO);
-        return true;
     }
-    public bool CheckForItem(ItemSO itemSO)
-    {
-        if (inventory.Contains(itemSO)) return true;
-        return false;
-    }*/
 
 }

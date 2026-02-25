@@ -24,6 +24,7 @@ public class PlayerInputHandler : MonoBehaviour
     [SerializeField] private string activeItem = "ActivateItem";
     [SerializeField] private string prevItem = "PreviousItem";
     [SerializeField] private string nextItem = "NextItem";
+    [SerializeField] private string activePhone = "ActivatePhone";
 
 
     private InputAction movementAction;
@@ -42,6 +43,9 @@ public class PlayerInputHandler : MonoBehaviour
     private InputAction prevItemCloseAction;
     private InputAction nextItemCloseAction;
 
+    private InputAction activePhoneAction;
+    private InputAction activePhoneCloseAction;
+
     public Vector2 MovementInput { get; private set; }
     public Vector2 RotationInput { get; private set; }
     public bool SprintTriggered { get; private set; }
@@ -52,6 +56,7 @@ public class PlayerInputHandler : MonoBehaviour
     public bool ActiveItemActionTriggered { get; private set; }
     public bool PreveItemActionTriggered { get; private set; }
     public bool NextItemActionTriggered { get; private set; }
+    public bool ActivePhoneActionTriggered { get; private set; }
 
 
     private void Awake()
@@ -74,6 +79,8 @@ public class PlayerInputHandler : MonoBehaviour
         prevItemCloseAction = mapReferenceCloseUp.FindAction(prevItem);
         nextItemAction = mapReference.FindAction(nextItem);
         nextItemCloseAction = mapReferenceCloseUp.FindAction(nextItem);
+        activePhoneAction = mapReference.FindAction(activePhone);
+        activePhoneCloseAction = mapReferenceCloseUp.FindAction(activePhone);
 
 
         SubscribeActionValuesToInputEvents();
@@ -117,6 +124,10 @@ public class PlayerInputHandler : MonoBehaviour
         nextItemCloseAction.performed += inputInfo => NextItemActionTriggered = true;
         nextItemCloseAction.canceled += inputInfo => NextItemActionTriggered = false;
 
+        activePhoneAction.performed += inputInfo => ActivePhoneActionTriggered = true;
+        activePhoneAction.canceled += inputInfo => ActivePhoneActionTriggered = false;
+        activePhoneCloseAction.performed += inputInfo => ActivePhoneActionTriggered = true;
+        activePhoneCloseAction.canceled += inputInfo => ActivePhoneActionTriggered = false;
     }
 
 

@@ -5181,10 +5181,6 @@ PrefabInstance:
       propertyPath: inventoryUI
       value: 
       objectReference: {fileID: 147130069}
-    - target: {fileID: 6291953296493586280, guid: 90ef29d2b1bf75d4c9d0270f67fbe10c, type: 3}
-      propertyPath: phoneInitialMessage
-      value: '"Testing initial phone message - set through the inventory"'
-      objectReference: {fileID: 0}
     - target: {fileID: 8801920807905284414, guid: 90ef29d2b1bf75d4c9d0270f67fbe10c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
