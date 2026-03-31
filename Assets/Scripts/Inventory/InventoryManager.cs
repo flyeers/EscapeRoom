@@ -76,7 +76,7 @@ public class InventoryManager : MonoBehaviour
         {
             if (inventory.Count == 0) return; //inventory is empty
 
-            if (activeItemIndex == -2) DestroyActiveItem(); //remove phone 
+            if (activeItemIndex == -2) DestroyActiveItem(); //remove phone --> TODO - si quiero q al dar tab si no habia item tambien se quite el movil poner antes de la anterior linea
 
             activeItemIndex = 0;
             InstantiateActiveItem();
